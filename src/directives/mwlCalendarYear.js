@@ -8,7 +8,6 @@ angular
 
     var vm = this;
     vm.openMonthIndex = null;
-
     function toggleCell() {
       vm.openRowIndex = null;
       vm.openMonthIndex = null;
@@ -25,7 +24,7 @@ angular
 
     $scope.$on('calendar.refreshView', function() {
       vm.view = calendarHelper.getYearView(vm.events, vm.viewDate, vm.cellModifier);
-
+      console.log(vm.view);
       if (vm.cellAutoOpenDisabled) {
         toggleCell();
       } else if (!vm.cellAutoOpenDisabled && vm.cellIsOpen && vm.openMonthIndex === null) {

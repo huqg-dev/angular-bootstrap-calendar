@@ -598,6 +598,28 @@ mwl-calendar .pointer {
 mwl-calendar .cal-year-box:last-child {
   border-bottom: 0px;
 }
+mwl-calendar .cal-year-div-qz {
+  width: 8.33%;
+  float: left;
+}
+mwl-calendar .cal-year-qz-word {
+  height: 20px;
+  font-size: 14px;
+  font-family: PingFangSC-Medium, PingFang SC;
+  line-height: 20px;
+}
+mwl-calendar .qz-word-color1 {
+  font-weight: 500;
+  color: #9BACBB;
+}
+mwl-calendar .qz-word-color2 {
+  color: #2F3E4B;
+  font-weight: 600;
+}
+mwl-calendar .qz-word-color3 {
+  color: #2F3E4B;
+  font-weight: 400;
+}
 mwl-calendar .cal-context {
   width: 100%;
 }

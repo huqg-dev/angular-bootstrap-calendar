@@ -1,3 +1,83 @@
+
+<div class="cal-year-box">
+  <div >
+    <div class="row cal-before-eventlist">
+      <div style="min-height:720px;"
+        class="span3 cal-year-div-qz cal-cell {{ day.cssClass }}"
+        ng-repeat="month in vm.view"
+        ng-init="monthIndex = vm.view.indexOf(month)"
+        ng-click="vm.monthClicked(month, false, $event)"
+        mwl-droppable
+        on-drop="vm.handleEventDrop(dropData.event, month.date)">
+        <div style="width:100%;height:49px;" ng-class="{pointer: month.events.length > 0, 'cal-day-today': month.isToday}">
+          <span style="padding-left: 8px;"
+            class="pull-left"
+            data-cal-date
+            ng-click="vm.calendarCtrl.dateClicked(month.date)"
+            ng-bind="month.label">
+          </span>
+        </div>
+        
+        <div style="height: 49px;background: rgba(36, 161, 72, 0.15);border-radius: 2px;margin-top:4px;"> 
+          <div style="background: rgba(36, 161, 72, 0.15);border-radius: 2px 0px 0px 2px;width: 2px;height: 49px;float:left;"></div>
+          <div class="cal-year-qz-word qz-word-color1" style="float:left;padding-left:8px;padding-top:4px;">SHTERM/3.3.5…</div>
+          <div class="cal-year-qz-word qz-word-color1" style="float:left;padding-left:8px;padding-top:4px;">标准补丁/5人·天</div>
+        </div>
+
+        <div style="height: 49px;background: rgba(36, 161, 72, 0.15);border-radius: 2px;margin-top:4px;"> 
+          <div style="background: #4FB36C;border-radius: 2px 0px 0px 2px;width: 2px;height: 49px;float:left;"></div>
+          <div class="cal-year-qz-word qz-word-color2" style="float:left;padding-left:8px;padding-top:4px;">SHTERM/3.3.5…</div>
+          <div class="cal-year-qz-word qz-word-color3" style="float:left;padding-left:8px;padding-top:4px;">标准补丁/5人·天</div>
+        </div>
+
+        <div style="height: 20px;background: rgba(54, 168, 199, 0.15);border-radius: 2px;margin-top:4px;"> 
+          <div style="background: rgba(54, 168, 199, 0.15);border-radius: 2px 0px 0px 2px;width: 2px;height: 20px;float:left;"></div>
+          <div class="cal-year-qz-word qz-word-color1" style="float:left;padding-left:8px;">0:10 服务-产品部署</div>
+        </div>
+
+        <div style="height: 20px;background: rgba(54, 168, 199, 0.15);border-radius: 2px;margin-top:4px;"> 
+          <div style="background: #5EB9D2;border-radius: 2px 0px 0px 2px;width: 2px;height: 20px;float:left;"></div>
+          <div class="cal-year-qz-word qz-word-color2" style="float:left;padding-left:8px;">14:00 实施-产品巡检</div>
+        </div>
+
+        <div style="height: 20px;background: rgba(255, 154, 61, 0.15);border-radius: 2px;margin-top:4px;text-overflow: ellipsis;white-space: normal;overflow: hidden;"> 
+          <div style="background: #FFAE63;border-radius: 2px 0px 0px 2px;width: 2px;height: 20px;float:left;"></div>
+          <div class="cal-year-qz-word qz-word-color1" style="float:left;padding-left:8px;width: calc(100% - 2px);">
+            <span title="部门周会今天下午四点召开，请各位及时参加">部门周会今天下午四点召开，请各位及时参加</span>
+          </div>
+        </div>
+
+        <div style="height: 20px;background: rgba(255, 154, 61, 0.15);border-radius: 2px;margin-top:4px;"> 
+          <div style="background: #FFAE63;border-radius: 2px 0px 0px 2px;width: 2px;height: 20px;float:left;"></div>
+          <div class="cal-year-qz-word qz-word-color2" style="float:left;padding-left:8px;">部门周会</div>
+        </div>
+
+        <div
+          class="cal-day-tick"
+          ng-show="monthIndex === vm.openMonthIndex && (vm.cellAutoOpenDisabled || vm.view[vm.openMonthIndex].events.length > 0) && !vm.slideBoxDisabled">
+          <i class="glyphicon glyphicon-chevron-up"></i>
+          <i class="fa fa-chevron-up"></i>
+        </div>
+
+      </div>
+    </div>
+
+    <mwl-calendar-slide-box
+      is-open="vm.openRowIndex === $index && (vm.cellAutoOpenDisabled || vm.view[vm.openMonthIndex].events.length > 0) && !vm.slideBoxDisabled"
+      events="vm.view[vm.openMonthIndex].events"
+      on-event-click="vm.onEventClick"
+      cell="vm.view[vm.openMonthIndex]"
+      custom-template-urls="vm.customTemplateUrls"
+      template-scope="vm.templateScope">
+    </mwl-calendar-slide-box>
+
+  </div>
+
+</div>
+
+<br><br><br><br>
+
+<!-- 原模板 -->
 <div class="cal-year-box">
   <div ng-repeat="rowOffset in [0, 4, 8] track by rowOffset">
     <div class="row cal-before-eventlist">

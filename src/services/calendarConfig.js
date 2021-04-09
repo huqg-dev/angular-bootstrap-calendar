@@ -45,7 +45,7 @@ angular
     get titleFormats() {
       return this.allDateFormats[this.dateFormatter].title;
     },
-    dateFormatter: 'angular',
+    dateFormatter: 'moment',
     showTimesOnWeekView: false,
     displayAllMonthEvents: false,
     i18nStrings: {

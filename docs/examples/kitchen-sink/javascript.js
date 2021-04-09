@@ -5,7 +5,7 @@ angular
     var vm = this;
 
     //These variables MUST be set as a minimum for the calendar to work
-    vm.calendarView = 'month';
+    vm.calendarView = 'week';
     vm.viewDate = new Date();
     var actions = [{
       label: '<i class=\'glyphicon glyphicon-pencil\'></i>',
@@ -74,6 +74,7 @@ angular
 
     vm.eventTimesChanged = function(event) {
       alert.show('Dropped or resized', event);
+      console.log(vm.events);
     };
 
     vm.toggle = function($event, field, event) {

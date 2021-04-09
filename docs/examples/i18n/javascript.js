@@ -13,13 +13,8 @@ angular
     calendarConfig.i18nStrings.weekNumber = 'Semaine {week}';
 
     $window.moment = $window.moment || moment;
-    $ocLazyLoad.load('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/fr.js').then(function() {
-      moment.locale('fr', {
-        week: {
-          dow: 1 // Monday is the first day of the week
-        }
-      });
-      moment.locale('fr'); // change the locale to french
+    $ocLazyLoad.load('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/locale/zh-cn.js').then(function() {
+      moment.locale('zh-cn'); // change the locale to zh-cn
     });
 
     $scope.$on('$destroy', function() {
