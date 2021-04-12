@@ -1,99 +1,69 @@
 <div class="cal-week-box" ng-class="[{'cal-day-box': vm.showTimes}, 'cal-grid-' + vm.view.days.length]">
-  <div class="cal-row-fluid cal-row-head"
+  <div class="cal-row-fluid cal-row-head" style="text-overflow: ellipsis; margin-bottom: 0px;"
        mwl-element-dimensions="vm.dayColumnDimensions">
     <div
-      class="cal-cell1"
+      style="padding-left: 5px; padding-right: 5px;"
+      class="cal-cell1 cell-week-head"
       ng-repeat="day in vm.view.days track by $index"
       ng-class="{
         'cal-day-weekend': day.isWeekend,
         'cal-day-past': day.isPast,
-        'cal-day-today': day.isToday,
         'cal-day-future': day.isFuture}"
       mwl-droppable
       on-drop="vm.eventDropped(dropData.event, day.date)">
-
-      <span ng-bind="day.weekDayLabel"></span>
-      <br>
-      <small>
-        <span
-          data-cal-date
-          ng-click="vm.calendarCtrl.dateClicked(day.date)"
-          class="pointer"
-          ng-bind="day.dayLabel">
-        </span>
-      </small>
-
+  
+      <div ng-bind="day.weekDayLabel" ng-class="{'today': day.isToday}"></div>
+  
     </div>
-
+  
   </div>
 
-  <div class="cal-day-panel clearfix" ng-style="{height: vm.showTimes ? (vm.dayViewHeight + 'px') : 'auto'}" style="width:100%;">
-
-    <mwl-calendar-hour-list
-      day-view-start="vm.dayViewStart"
-      day-view-end="vm.dayViewEnd"
-      day-view-split="vm.dayViewSplit"
-      day-width="(vm.dayColumnDimensions.width - 60) / vm.view.days.length"
-      view-date="vm.viewDate"
-      on-timespan-click="vm.onTimespanClick"
-      on-date-range-select="vm.onDateRangeSelect"
-      custom-template-urls="vm.customTemplateUrls"
-      cell-modifier="vm.cellModifier"
-      template-scope="vm.templateScope"
-      view="week"
-      ng-if="vm.showTimes">
-    </mwl-calendar-hour-list>
-
-    <div class="row" ng-repeat="row in vm.view.eventRows track by $index">
-      <div class="col-xs-12">
-        <div class="cal-row-fluid">
-          <div
-            ng-repeat="eventRow in row.row track by eventRow.event.calendarEventId"
-            ng-class="'cal-cell' + (vm.showTimes ? 1 : eventRow.span) + (vm.showTimes ? '' : ' cal-offset' + eventRow.offset)"
-            ng-style="{
-              top: vm.showTimes ? ((eventRow.top) + 'px') : 'auto',
-              position: vm.showTimes ? 'absolute' : 'inherit',
-              width: vm.showTimes ? ((vm.dayColumnDimensions.width - 60) / vm.view.days.length + 'px') : '',
-              left: vm.showTimes ? (((vm.dayColumnDimensions.width - 60) / vm.view.days.length) * eventRow.offset) + 15 + 'px' : ''
-            }">
-            <div
-              class="day-highlight"
-              ng-class="[eventRow.event.cssClass, !vm.showTimes && eventRow.startsBeforeWeek ? '' : 'border-left-rounded', !vm.showTimes && eventRow.endsAfterWeek ? '' : 'border-right-rounded']"
-              ng-style="{backgroundColor: eventRow.event.color.secondary}"
-              data-event-class
-              mwl-draggable="eventRow.event.draggable === true"
-              axis="vm.showTimes ? 'xy' : 'x'"
-              snap-grid="vm.showTimes ? {x: (vm.dayColumnDimensions.width - 60) / vm.view.days.length, y: vm.dayViewEventChunkSize || 30} : {x: vm.dayColumnDimensions.width / vm.view.days.length}"
-              auto-scroll="vm.draggableAutoScroll"
-              on-drag="vm.tempTimeChanged(eventRow.event, y / 30)"
-              on-drag-end="vm.weekDragged(eventRow.event, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length), y / 30)"
-              mwl-resizable="eventRow.event.resizable === true && eventRow.event.endsAt && !vm.showTimes"
-              resize-edges="{left: true, right: true}"
-              on-resize-end="vm.weekResized(eventRow.event, edge, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length))">
-              <strong ng-bind="(eventRow.event.tempStartsAt || eventRow.event.startsAt) | calendarDate:'time':true" ng-show="vm.showTimes"></strong>
-              <a
-                href="javascript:;"
-                ng-click="vm.onEventClick({calendarEvent: eventRow.event})"
-                class="event-item"
-                ng-bind-html="vm.calendarEventTitle.weekView(eventRow.event) | calendarTrustAsHtml"
-                uib-tooltip-html="vm.calendarEventTitle.weekViewTooltip(eventRow.event) | calendarTrustAsHtml"
-                tooltip-placement="left"
-                tooltip-append-to-body="true">
-              </a>
-              <a
-                href="javascript:;"
-                class="event-item-action"
-                ng-class="action.cssClass"
-                ng-repeat="action in eventRow.event.actions track by $index"
-                ng-bind-html="action.label | calendarTrustAsHtml"
-                ng-click="action.onClick({calendarEvent: eventRow.event})">
-              </a>
-            </div>
-          </div>
+  <div class="cal-row-fluid cal-row-head" style="text-overflow: ellipsis; min-height: 720px; margin-bottom: 0px;"
+    mwl-element-dimensions="vm.dayColumnDimensions">
+    <div
+      ng-repeat="day in vm.view.days track by $index"
+      class="cell-week-head"
+      ng-class="{
+        'cal-day-weekend': day.isWeekend,
+        'cal-day-past': day.isPast,
+        'cal-day-future': day.isFuture}"
+      mwl-droppable
+      on-drop="vm.eventDropped(dropData.event, day.date)">
+      <div class="cal-row-fluid cal-cell1 cal-row-head" 
+        style="text-overflow: ellipsis; min-height: 720px; padding: 4px; margin-bottom: 0px; border-left: 1px solid #DEE3E5; border-bottom: 1px solid #DEE3E5;"
+        mwl-element-dimensions="vm.dayColumnDimensions">
+        <div style="height: 100%">
+         <div ng-if="day.calendarFlag == 3" style="height: 49px;background: rgba(36, 161, 72, 0.15);border-radius: 2px;margin-top:4px;"> 
+           <div style="background: rgba(36, 161, 72, 0.15);border-radius: 2px 0px 0px 2px;width: 2px;height: 49px;float:left;"></div>
+           <div class="cal-year-qz-word qz-word-color1" style="float:left;padding-left:8px;padding-top:4px;">calendarTitle</div>
+           <div class="cal-year-qz-word qz-word-color1" style="float:left;padding-left:8px;padding-top:4px;">标准补丁/5人·天</div>
+         </div>
+         <div style="height: 49px;background: rgba(36, 161, 72, 0.15);border-radius: 2px;margin-top:4px;"> 
+           <div style="background: #4FB36C;border-radius: 2px 0px 0px 2px;width: 2px;height: 49px;float:left;"></div>
+           <div class="cal-year-qz-word qz-word-color2" style="float:left;padding-left:8px;padding-top:4px;">SHTERM/3.3.5…</div>
+           <div class="cal-year-qz-word qz-word-color3" style="float:left;padding-left:8px;padding-top:4px;">标准补丁/5人·天</div>
+         </div>
+         <div style="height: 20px;background: rgba(54, 168, 199, 0.15);border-radius: 2px;margin-top:4px;"> 
+           <div style="background: rgba(54, 168, 199, 0.15);border-radius: 2px 0px 0px 2px;width: 2px;height: 20px;float:left;"></div>
+           <div class="cal-year-qz-word qz-word-color1" style="float:left;padding-left:8px;">0:10 服务-产品部署</div>
+         </div>
+         <div ng-if="day.calendarFlag == 2" style="height: 20px;background: rgba(54, 168, 199, 0.15);border-radius: 2px;margin-top:4px;"> 
+           <div style="background: #5EB9D2;border-radius: 2px 0px 0px 2px;width: 2px;height: 20px;float:left;"></div>
+           <div class="cal-year-qz-word qz-word-color2" style="float:left;padding-left:8px;">14:00 实施-产品巡检</div>
+         </div>
+         <div ng-if="day.calendarFlag == 1" style="height: 20px;background: rgba(255, 154, 61, 0.15);border-radius: 2px;margin-top:4px;text-overflow: ellipsis;white-space: normal;overflow: hidden;"> 
+           <div style="background: #FFAE63;border-radius: 2px 0px 0px 2px;width: 2px;height: 20px;float:left;"></div>
+           <div class="cal-year-qz-word qz-word-color1" style="float:left;padding-left:8px;width: calc(100% - 2px);">
+             <span title="部门周会今天下午四点召开，请各位及时参加">部门周会今天下午四点召开，请各位及时参加</span>
+           </div>
+           <div class="cal-year-qz-word qz-word-color1" style="float:left;padding-left:8px;padding-top:4px;">SHTERM/3.3.5…</div>
+           <div class="cal-year-qz-word qz-word-color1" style="float:left;padding-left:8px;padding-top:4px;">标准补丁/5人·天</div>
+         </div>
         </div>
       </div>
-
+      
     </div>
-
+  
   </div>
+
 </div>
