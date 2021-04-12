@@ -108,13 +108,13 @@ angular
       return weekdays;
     }
 
-    function getYearView(events, viewDate, cellModifier) {
+    function getYearView(events, viewDate, cellModifier, yearViewStart, yearViewEnd) {
 
       var view = [];
       var eventsInPeriod = getEventsInPeriod(viewDate, 'year', events);
       var month = moment(viewDate).startOf('year');
       var count = 0;
-      while (count < 12) {
+      while (count <= 11) {
         var startPeriod = month.clone();
         var endPeriod = startPeriod.clone().endOf('month');
         var periodEvents = filterEventsInPeriod(eventsInPeriod, startPeriod, endPeriod);
@@ -132,8 +132,18 @@ angular
         count++;
       }
 
-      return view;
+      if (yearViewStart == undefined || yearViewStart < 0 || yearViewStart > 11) {
+        yearViewStart = 0;
+      }
+      if (yearViewEnd == undefined || yearViewEnd < 0 || yearViewEnd > 11) {
+        yearViewEnd = 11;
+      }
 
+      if (parseInt(yearViewStart) > 0 && parseInt(yearViewEnd) < 11 && parseInt(yearViewEnd) > parseInt(yearViewStart)) {
+        view = view.splice(parseInt(yearViewStart) - 1, parseInt(yearViewEnd) - parseInt(yearViewStart) + 1);
+      } 
+    
+      return view;
     }
 
     function updateEventForCalendarUtils(event, eventPeriod) {

@@ -5,7 +5,9 @@ angular
     var vm = this;
 
     //These variables MUST be set as a minimum for the calendar to work
-    vm.calendarView = 'week';
+    vm.calendarView = 'year';
+    vm.yearViewStart = 0;
+    vm.yearViewEnd = 11;
     vm.viewDate = new Date();
     var actions = [{
       label: '<i class=\'glyphicon glyphicon-pencil\'></i>',
@@ -20,7 +22,43 @@ angular
     }];
     vm.events = [
       {
-        title: 'An event',
+        calendarFlag: 3,
+        calendarTitle: 'SHTERM/3.3.5…',
+        calendarStatus: 1,
+        calendarPubSub: '标准补丁/5人·天',
+        calendarPubDate: '4.12',
+        startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
+        endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
+        draggable: true,
+        resizable: true,
+        actions: actions
+      }, {
+        calendarFlag: 3,
+        calendarTitle: 'SHTERM/3.3.5…',
+        calendarStatus: 4,
+        calendarPubSub: '标准补丁/5人·天',
+        calendarPubDate: '4.15',
+        startsAt: moment().subtract(1, 'day').toDate(),
+        endsAt: moment().add(5, 'days').toDate(),
+        draggable: true,
+        resizable: true,
+        actions: actions
+      }, {
+        calendarFlag: 1,
+        calendarStatus: 2,
+        calendarTitle: '部门周会今天下午四点召开，请各位及时参加',
+        color: calendarConfig.colorTypes.important,
+        startsAt: moment().startOf('day').add(7, 'hours').toDate(),
+        endsAt: moment().startOf('day').add(19, 'hours').toDate(),
+        recursOn: 'year',
+        draggable: true,
+        resizable: true,
+        actions: actions
+      },
+      {
+        calendarFlag: 1,
+        calendarTitle: '部门周会',
+        calendarStatus: 4,
         color: calendarConfig.colorTypes.warning,
         startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
         endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
@@ -28,7 +66,9 @@ angular
         resizable: true,
         actions: actions
       }, {
-        title: '<i class="glyphicon glyphicon-asterisk"></i> <span class="text-primary">Another event</span>, with a <i>html</i> title',
+        calendarFlag: 2,
+        calendarStatus: 1,
+        calendarTitle: '0:10 服务-产品部署',
         color: calendarConfig.colorTypes.info,
         startsAt: moment().subtract(1, 'day').toDate(),
         endsAt: moment().add(5, 'days').toDate(),
@@ -36,7 +76,20 @@ angular
         resizable: true,
         actions: actions
       }, {
-        title: 'This is a really long event title that occurs on every year',
+        calendarFlag: 2,
+        calendarStatus: 2,
+        calendarTitle: '14:00 实施-产品巡检',
+        color: calendarConfig.colorTypes.important,
+        startsAt: moment().startOf('day').add(7, 'hours').toDate(),
+        endsAt: moment().startOf('day').add(19, 'hours').toDate(),
+        recursOn: 'year',
+        draggable: true,
+        resizable: true,
+        actions: actions
+      }, {
+        calendarFlag: 2,
+        calendarStatus: 4,
+        calendarTitle: '14:00 实施-产品巡检',
         color: calendarConfig.colorTypes.important,
         startsAt: moment().startOf('day').add(7, 'hours').toDate(),
         endsAt: moment().startOf('day').add(19, 'hours').toDate(),
@@ -73,7 +126,7 @@ angular
     };
 
     vm.eventTimesChanged = function(event) {
-      alert.show('Dropped or resized', event);
+      alert.show('时间变了', event);
       console.log(vm.events);
     };
 

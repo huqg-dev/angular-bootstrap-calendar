@@ -23,8 +23,7 @@ angular
     }
 
     $scope.$on('calendar.refreshView', function() {
-      vm.view = calendarHelper.getYearView(vm.events, vm.viewDate, vm.cellModifier);
-      console.log(vm.view);
+      vm.view = calendarHelper.getYearView(vm.events, vm.viewDate, vm.cellModifier, vm.yearViewStart, vm.yearViewEnd);
       if (vm.cellAutoOpenDisabled) {
         toggleCell();
       } else if (!vm.cellAutoOpenDisabled && vm.cellIsOpen && vm.openMonthIndex === null) {
@@ -67,6 +66,10 @@ angular
 
     };
 
+    vm.getDivQzWidth = function() {
+      return  100 / vm.view.length;
+    }
+
     vm.handleEventDrop = function(event, newMonthDate) {
       var newStart = moment(event.startsAt)
         .year(moment(newMonthDate).year())
@@ -86,7 +89,9 @@ angular
       if (vm.cellAutoOpenDisabled) {
         $scope.$watchGroup([
           'vm.cellIsOpen',
-          'vm.viewDate'
+          'vm.viewDate',
+          'vm.yaerViewStart',
+          'vm.yearViewEnd'
         ], toggleCell);
       }
 
@@ -114,6 +119,8 @@ angular
         cellModifier: '=',
         slideBoxDisabled: '=',
         customTemplateUrls: '=?',
+        yearViewStart: '=',
+        yearViewEnd: '=',
         templateScope: '='
       },
       controller: 'MwlCalendarYearCtrl as vm',
