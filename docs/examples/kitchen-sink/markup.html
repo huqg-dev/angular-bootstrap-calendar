@@ -47,8 +47,7 @@
   </div>
 
   <br>
-  <div style="min-height:720px;">
-    <mwl-calendar
+  <mwl-calendar
     events="vm.events"
     view="vm.calendarView"
     view-title="vm.calendarTitle"
@@ -56,6 +55,8 @@
     on-event-click="vm.eventClicked(calendarEvent)"
     on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
     cell-is-open="vm.cellIsOpen"
+    year-view-start="vm.yearViewStart"
+    year-view-end="vm.yearViewEnd"
     day-view-start="06:00"
     day-view-end="22:59"
     day-view-split="30"
@@ -63,5 +64,4 @@
     cell-auto-open-disabled="true"
     on-timespan-click="vm.timespanClicked(calendarDate, calendarCell)">
   </mwl-calendar>
-  </div>
 </div>

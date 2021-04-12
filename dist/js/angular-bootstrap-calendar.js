@@ -1460,6 +1460,8 @@ angular
         onDateRangeSelect: '&?',
         onViewChangeClick: '&',
         cellModifier: '&',
+        yearViewStart: '=',
+        yearViewEnd: '=',
         dayViewStart: '@',
         dayViewSegmentSize: '@',
         dayViewEnd: '@',
@@ -3015,8 +3017,7 @@ angular
     }
 
     $scope.$on('calendar.refreshView', function() {
-      vm.view = calendarHelper.getYearView(vm.events, vm.viewDate, vm.cellModifier);
-      console.log(vm.view);
+      vm.view = calendarHelper.getYearView(vm.events, vm.viewDate, vm.cellModifier, vm.yearViewStart, vm.yearViewEnd);
       if (vm.cellAutoOpenDisabled) {
         toggleCell();
       } else if (!vm.cellAutoOpenDisabled && vm.cellIsOpen && vm.openMonthIndex === null) {
@@ -3059,6 +3060,10 @@ angular
 
     };
 
+    vm.getDivQzWidth = function() {
+      return  100 / vm.view.length;
+    }
+
     vm.handleEventDrop = function(event, newMonthDate) {
       var newStart = moment(event.startsAt)
         .year(moment(newMonthDate).year())
@@ -3078,7 +3083,9 @@ angular
       if (vm.cellAutoOpenDisabled) {
         $scope.$watchGroup([
           'vm.cellIsOpen',
-          'vm.viewDate'
+          'vm.viewDate',
+          'vm.yaerViewStart',
+          'vm.yearViewEnd'
         ], toggleCell);
       }
 
@@ -3106,6 +3113,8 @@ angular
         cellModifier: '=',
         slideBoxDisabled: '=',
         customTemplateUrls: '=?',
+        yearViewStart: '=',
+        yearViewEnd: '=',
         templateScope: '='
       },
       controller: 'MwlCalendarYearCtrl as vm',
@@ -4126,13 +4135,13 @@ angular
       return weekdays;
     }
 
-    function getYearView(events, viewDate, cellModifier) {
+    function getYearView(events, viewDate, cellModifier, yearViewStart, yearViewEnd) {
 
       var view = [];
       var eventsInPeriod = getEventsInPeriod(viewDate, 'year', events);
       var month = moment(viewDate).startOf('year');
       var count = 0;
-      while (count < 12) {
+      while (count <= 11) {
         var startPeriod = month.clone();
         var endPeriod = startPeriod.clone().endOf('month');
         var periodEvents = filterEventsInPeriod(eventsInPeriod, startPeriod, endPeriod);
@@ -4150,8 +4159,18 @@ angular
         count++;
       }
 
-      return view;
+      if (yearViewStart == undefined || yearViewStart < 0 || yearViewStart > 11) {
+        yearViewStart = 0;
+      }
+      if (yearViewEnd == undefined || yearViewEnd < 0 || yearViewEnd > 11) {
+        yearViewEnd = 11;
+      }
 
+      if (parseInt(yearViewStart) > 0 && parseInt(yearViewEnd) < 11 && parseInt(yearViewEnd) > parseInt(yearViewStart)) {
+        view = view.splice(parseInt(yearViewStart) - 1, parseInt(yearViewEnd) - parseInt(yearViewStart) + 1);
+      } 
+    
+      return view;
     }
 
     function updateEventForCalendarUtils(event, eventPeriod) {

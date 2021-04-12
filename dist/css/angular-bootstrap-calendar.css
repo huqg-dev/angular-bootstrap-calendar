@@ -599,8 +599,8 @@ mwl-calendar .cal-year-box:last-child {
   border-bottom: 0px;
 }
 mwl-calendar .cal-year-div-qz {
-  width: 8.33%;
   float: left;
+  min-width: 160px;
 }
 mwl-calendar .cal-year-qz-word {
   height: 20px;
@@ -619,6 +619,10 @@ mwl-calendar .qz-word-color2 {
 mwl-calendar .qz-word-color3 {
   color: #2F3E4B;
   font-weight: 400;
+}
+mwl-calendar .qz-word-color4 {
+  font-weight: 600;
+  color: #FB6963;
 }
 mwl-calendar .cal-context {
   width: 100%;
@@ -880,4 +884,85 @@ mwl-calendar .cal-event-list .event.pull-left {
 mwl-calendar .day-highlight:hover,
 mwl-calendar .day-highlight {
   background-color: #dddddd;
+}
+.cal-year-hidden-point {
+  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: hidden;
+  cursor: pointer;
+}
+.cal-year-content-width {
+  float: left;
+  padding-left: 8px;
+  width: calc(98%);
+}
+.cal-year-sub-div49 {
+  height: 49px;
+  border-radius: 2px;
+  margin-top: 4px;
+}
+.cal-year-sub-div49 .icon {
+  border-radius: 2px 0px 0px 2px;
+  width: 2px;
+  height: 49px;
+  float: left;
+}
+.cal-year-sub-div49 .green-low {
+  background: rgba(36, 161, 72, 0.15);
+}
+.cal-year-sub-div49 .green-high {
+  background: #4FB36C;
+}
+.cal-green-low {
+  background: rgba(36, 161, 72, 0.15);
+}
+.cal-green-low:hover {
+  background: #4FB36C;
+}
+.cal-green-low:hover div {
+  color: #FFFFFF;
+}
+.cal-ori-low {
+  background: rgba(255, 154, 61, 0.15);
+}
+.cal-ori-low:hover {
+  background: #FFAE63;
+}
+.cal-blue-low {
+  background: rgba(54, 168, 199, 0.15);
+}
+.cal-blue-low:hover {
+  background: #5EB9D2;
+}
+.cal-red-low {
+  background: rgba(251, 105, 99, 0.15);
+}
+.cal-year-sub-div20 {
+  height: 20px;
+  border-radius: 2px;
+  margin-top: 4px;
+}
+.cal-year-sub-div20 .icon {
+  border-radius: 2px 0px 0px 2px;
+  width: 2px;
+  height: 20px;
+  float: left;
+}
+.cal-year-sub-div20 .ori-high {
+  background: #FFAE63;
+}
+.cal-year-sub-div20 .ori-low {
+  background: rgba(255, 154, 61, 0.15);
+}
+.cal-year-sub-div20 .blue-low {
+  background: rgba(54, 168, 199, 0.15);
+}
+.cal-year-sub-div20 .blue-high {
+  background: #5EB9D2;
+}
+.cal-year-sub-div20 .red-high {
+  background: #FB6963;
+}
+.cal-year-sub-div20 :hover {
+  color: #FFFFFF;
 }
