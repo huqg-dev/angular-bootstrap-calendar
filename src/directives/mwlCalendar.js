@@ -259,6 +259,8 @@ angular
         onDateRangeSelect: '&?',
         onViewChangeClick: '&',
         cellModifier: '&',
+        yearViewStart: '=',
+        yearViewEnd: '=',
         dayViewStart: '@',
         dayViewSegmentSize: '@',
         dayViewEnd: '@',
