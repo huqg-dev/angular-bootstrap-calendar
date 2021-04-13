@@ -5,7 +5,7 @@ angular
     var vm = this;
 
     //These variables MUST be set as a minimum for the calendar to work
-    vm.calendarView = 'year';
+    vm.calendarView = 'week';
     vm.yearViewStart = 0;
     vm.yearViewEnd = 11;
     vm.viewDate = new Date();
