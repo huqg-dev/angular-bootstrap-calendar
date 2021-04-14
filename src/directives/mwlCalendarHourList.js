@@ -37,7 +37,6 @@ angular
     vm.scrollBarWidth = getScrollbarWidth();
 
     function updateDays() {
-
       vm.dayViewSplit = parseInt(vm.dayViewSplit);
       var dayStart = (vm.dayViewStart || '00:00').split(':');
       var dayEnd = (vm.dayViewEnd || '23:59').split(':');
@@ -56,7 +55,6 @@ angular
 
       vm.hourGrid.forEach(function(hour) {
         hour.segments.forEach(function(segment) {
-
           segment.date = moment(segment.date);
           segment.nextSegmentDate = segment.date.clone().add(vm.dayViewSplit, 'minutes');
 

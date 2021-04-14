@@ -24,6 +24,8 @@ angular
       },
       moment: {
         date: {
+          dayDate: 'MMM D',
+          dayHour: 'HH:mm',
           hour: 'ha',
           day: 'D MMM',
           month: 'MMMM',

@@ -7,6 +7,8 @@ angular
   .module('mwl.calendar')
   .factory('calendarHelper', function($q, $templateRequest, dateFilter, moment, calendarConfig) {
 
+    
+
     function formatDate(date, format) {
       if (calendarConfig.dateFormatter === 'angular') {
         return dateFilter(moment(date).toDate(), format);
