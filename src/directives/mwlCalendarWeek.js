@@ -29,6 +29,7 @@ angular
       } else {
         vm.view = calendarHelper.getWeekView(vm.events, vm.viewDate, vm.excludedDays);
       }
+      console.log(vm.view, "---*-*--*-*-*-*-*")
     });
 
     vm.weekDragged = function(event, daysDiff, minuteChunksMoved) {
