@@ -1,35 +1,93 @@
-<div class="cal-week-box cal-all-day-events-box" ng-if="vm.allDayEvents.length > 0">
-  <div class="cal-day-panel clearfix">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="cal-row-fluid">
-          <div
-            class="cal-cell-6 day-highlight"
-            ng-style="{backgroundColor: event.color.secondary}"
-            data-event-class
-            ng-repeat="event in vm.allDayEvents track by event.calendarEventId">
-            <strong>
-              <span ng-bind="event.startsAt | calendarDate:'datetime':true"></span>
-              <span ng-if="event.endsAt">
-                - <span ng-bind="event.endsAt | calendarDate:'datetime':true"></span>
-              </span>
-            </strong>
-            <a
-              href="javascript:;"
-              class="event-item"
-              ng-click="vm.onEventClick({calendarEvent: event})"
-              ng-bind-html="vm.calendarEventTitle.dayView(event) | calendarTrustAsHtml">
-            </a>
+<div style="height:59px;position: relative;">
+    <div style="float:left;width:62px;height: 100%;border: solid 1px #e1e1e1;border-right: 0px;border-bottom: 0px;padding-top: 20px;" 
+      align="center"><strong>全天</strong>
+    </div>
+    <div style="float:left;width:calc(100% - 102px);height: 100%;border: solid 1px #e1e1e1;border-bottom: 0px;">
+      <div ng-repeat="calEvent in vm.allDayEvents">
+
+        <!-- 发布计划 -->
+        <div class="cal-year-hidden-point cal-year-sub-div49 cal-green-low year-day-div-width183" 
+          ng-click="vm.onEventClick({calendarEvent: calEvent})"
+          ng-if="calEvent.calendarFlag == 3 && calEvent.calendarStatus == 1"> 
+          <div class="icon green-low"></div>
+          <div class="cal-year-qz-word qz-word-color1 cal-year-content-width" style="margin-top:4px;">{{calEvent.calendarTitle}}</div>
+          <div class="cal-year-qz-word qz-word-color1 cal-year-content-width">
+            <span style="width:80%;" title="{{calEvent.calendarPubSub}}">{{calEvent.calendarPubSub}}</span>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
 
+        <div class="cal-year-hidden-point cal-year-sub-div49 cal-green-low year-day-div-width183" 
+          ng-click="vm.onEventClick({calendarEvent: calEvent})"
+          ng-if="calEvent.calendarFlag == 3 && calEvent.calendarStatus == 4"> 
+          <div class="icon green-high"></div>
+          <div class="cal-year-qz-word qz-word-color2 cal-year-content-width" style="margin-top:4px;">{{calEvent.calendarTitle}}</div>
+          <div class="cal-year-qz-word qz-word-color3 cal-year-content-width">
+            <span style="width:80%;" title="{{calEvent.calendarPubSub}}">{{calEvent.calendarPubSub}}</span>
+          </div>
+        </div>
+
+        <!-- 任务 -->
+        <div class="cal-year-hidden-point cal-year-sub-div20 cal-blue-low year-day-div-width183 year-day-div-height49" 
+          ng-click="vm.onEventClick({calendarEvent: calEvent})"
+          ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 1"> 
+          <div class="icon blue-low"></div>
+          <div class="cal-year-qz-word qz-word-color1 cal-year-content-width year-day-content">
+            <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          </div>
+        </div>
+
+        <div class="cal-year-hidden-point cal-year-sub-div20 cal-red-low year-day-div-width183 year-day-div-height49" 
+          ng-click="vm.onEventClick({calendarEvent: calEvent})"
+          ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 2"> 
+          <div class="icon red-high"></div>
+          <div class="cal-year-qz-word qz-word-color4 cal-year-content-width year-day-content">
+            <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          </div>
+        </div>
+
+        <div class="cal-year-hidden-point cal-year-sub-div20 cal-blue-low year-day-div-width183" ng-click="vm.onEventClick({calendarEvent: calEvent})"
+          ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 4"> 
+          <div class="icon blue-high"></div>
+          <div class="cal-year-qz-word qz-word-color2 cal-year-content-width year-day-content">
+            <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          </div>
+        </div>
+
+        <!-- 日程 -->
+        <div class="cal-year-sub-div20 cal-ori-low cal-year-hidden-point year-day-div-width18 year-day-div-height49"
+          ng-click="vm.onEventClick({calendarEvent: calEvent})"
+          ng-if="calEvent.calendarFlag == 1 && calEvent.calendarStatus == 2"> 
+          <div class="icon ori-low"></div>
+          <div class="cal-year-qz-word qz-word-color1 cal-year-content-width year-day-content">
+            <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          </div>
+        </div>
+
+        <div class="cal-year-sub-div20 cal-ori-low cal-year-hidden-point year-day-div-width183 year-day-div-height49" 
+          ng-click="vm.onEventClick({calendarEvent: calEvent})"
+          ng-if="calEvent.calendarFlag == 1 && calEvent.calendarStatus == 4"> 
+          <div class="icon ori-high"></div>
+          <div class="cal-year-qz-word qz-word-color2 cal-year-content-width year-day-content">
+            <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+    <div style="float:left;width:40px;height: 100%;border: solid 1px #e1e1e1;border-left: 0px;border-bottom: 0px;" 
+      align="center" class="myShowClass">
+      <div class="year-more-button myShowClass" ng-click="vm.showAllDayOver()"><strong>...</strong></div>
+    </div>
+    <div class="showAllDayEventTips myShowClass" ng-show="vm.showAllDayEventTips">
+      我是狮子
+    </div>
+</div>
 <div class="cal-day-box">
   <div class="cal-day-panel clearfix" ng-style="{height: vm.dayViewHeight + 'px', minWidth: vm.viewWidth + 'px'}">
-
     <mwl-calendar-hour-list
       day-view-start="vm.dayViewStart"
       day-view-end="vm.dayViewEnd"
@@ -53,8 +111,7 @@
         left: dayEvent.left +  vm.dayViewTimePositionOffset + 'px',
         height: dayEvent.height + 'px',
         width: dayEvent.width + 'px',
-        backgroundColor: dayEvent.event.color.secondary,
-        borderColor: dayEvent.event.color.primary
+        backgroundColor: dayEvent.event.color.secondary
       }"
       mwl-draggable="dayEvent.event.draggable === true"
       axis="'xy'"
@@ -68,10 +125,11 @@
       on-resize-end="vm.eventResizeComplete(dayEvent.event, edge, y / (vm.dayViewSegmentSize || 30))"
       uib-tooltip-html="vm.calendarEventTitle.dayViewTooltip(dayEvent.event) | calendarTrustAsHtml"
       tooltip-append-to-body="true">
-
+    
       <span class="cal-hours">
-        <span ng-show="dayEvent.top == 0"><span ng-bind="(dayEvent.event.tempStartsAt || dayEvent.event.startsAt) | calendarDate:'day':true"></span>, </span>
         <span ng-bind="(dayEvent.event.tempStartsAt || dayEvent.event.startsAt) | calendarDate:'time':true"></span>
+        ~
+        <span ng-bind="(dayEvent.event.tempStartsAt || dayEvent.event.endsAt) | calendarDate:'time':true"></span>
       </span>
       <a
         href="javascript:;"
@@ -80,7 +138,7 @@
         <span ng-bind-html="vm.calendarEventTitle.dayView(dayEvent.event) | calendarTrustAsHtml"></span>
       </a>
 
-      <a
+      <a ng-show="false"
         href="javascript:;"
         class="event-item-action"
         ng-repeat="action in dayEvent.event.actions track by $index"
@@ -88,6 +146,19 @@
         ng-bind-html="action.label | calendarTrustAsHtml"
         ng-click="action.onClick({calendarEvent: dayEvent.event})">
       </a>
+
+      <span style="word-break: normal;width: 100%;display: block;margin-top: 12px;word-wrap: break-word;overflow: hidden ">
+        <span ng-show="dayEvent.event.calendarTitle" title="{{dayEvent.event.calendarTitle}}" 
+          style="color: #2F3E4B;font-weight: 600;">
+          {{dayEvent.event.calendarTitle}}
+        </span>
+        <br><br>
+        <span ng-show="dayEvent.event.calendarTitle" title="{{dayEvent.event.calendarPubSub}}"
+          style="color: #2F3E4B;font-weight: 400;">
+          {{dayEvent.event.calendarPubSub}}
+        </span>
+      </span>
+
 
     </div>
 

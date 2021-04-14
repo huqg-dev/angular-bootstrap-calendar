@@ -14,11 +14,6 @@ angular
       onClick: function(args) {
         alert.show('Edited', args.calendarEvent);
       }
-    }, {
-      label: '<i class=\'glyphicon glyphicon-remove\'></i>',
-      onClick: function(args) {
-        alert.show('Deleted', args.calendarEvent);
-      }
     }];
     vm.events = [
       {
@@ -47,7 +42,7 @@ angular
         calendarFlag: 1,
         calendarStatus: 2,
         calendarTitle: '部门周会今天下午四点召开，请各位及时参加',
-        color: calendarConfig.colorTypes.important,
+        calendarPubSub: '标准补丁/5人·天',
         startsAt: moment().startOf('day').add(7, 'hours').toDate(),
         endsAt: moment().startOf('day').add(19, 'hours').toDate(),
         recursOn: 'year',
@@ -59,7 +54,6 @@ angular
         calendarFlag: 1,
         calendarTitle: '部门周会',
         calendarStatus: 4,
-        color: calendarConfig.colorTypes.warning,
         startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
         endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
         draggable: true,
@@ -69,7 +63,6 @@ angular
         calendarFlag: 2,
         calendarStatus: 1,
         calendarTitle: '0:10 服务-产品部署',
-        color: calendarConfig.colorTypes.info,
         startsAt: moment().subtract(1, 'day').toDate(),
         endsAt: moment().add(5, 'days').toDate(),
         draggable: true,
@@ -79,7 +72,6 @@ angular
         calendarFlag: 2,
         calendarStatus: 2,
         calendarTitle: '14:00 实施-产品巡检',
-        color: calendarConfig.colorTypes.important,
         startsAt: moment().startOf('day').add(7, 'hours').toDate(),
         endsAt: moment().startOf('day').add(19, 'hours').toDate(),
         recursOn: 'year',
@@ -90,7 +82,6 @@ angular
         calendarFlag: 2,
         calendarStatus: 4,
         calendarTitle: '14:00 实施-产品巡检',
-        color: calendarConfig.colorTypes.important,
         startsAt: moment().startOf('day').add(7, 'hours').toDate(),
         endsAt: moment().startOf('day').add(19, 'hours').toDate(),
         recursOn: 'year',
