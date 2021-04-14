@@ -1211,7 +1211,7 @@ angular
     moment.locale('zh-cn',{
       months : '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split('_'),
       monthsShort : '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
-      weekdays : '星期日_星期一_星期二_星期三_星期四_星期五_星期六'.split('_'),
+      weekdays : '周日_周一_周二_周三_周四_周五_周六'.split('_'),
       weekdaysShort : '周日_周一_周二_周三_周四_周五_周六'.split('_'),
       weekdaysMin : '日_一_二_三_四_五_六'.split('_'),
       longDateFormat : {
@@ -1242,7 +1242,8 @@ angular
           }
       },
       meridiem : function (hour, minute, isLower) {
-          var hm = hour * 100 + minute;
+          return '';
+/*           var hm = hour * 100 + minute;
           if (hm < 600) {
               return '凌晨';
           } else if (hm < 900) {
@@ -1255,7 +1256,7 @@ angular
               return '下午';
           } else {
               return '晚上';
-          }
+          } */
       },
       calendar : {
           sameDay : function () {
@@ -1341,6 +1342,10 @@ angular
       }
 
     };
+
+    vm.getContent = function(content) {
+
+    }
 
     vm.$onInit = function() {
 
@@ -1489,13 +1494,15 @@ var angular = __webpack_require__(0);
 
 angular
   .module('mwl.calendar')
-  .controller('MwlCalendarDayCtrl', ["$scope", "moment", "calendarHelper", "calendarEventTitle", function($scope, moment, calendarHelper, calendarEventTitle) {
+  .controller('MwlCalendarDayCtrl', ["$scope", "$window", "$timeout", "moment", "calendarHelper", "calendarEventTitle", function($scope, $window, $timeout, moment, calendarHelper, calendarEventTitle) {
 
     var vm = this;
 
     vm.calendarEventTitle = calendarEventTitle;
 
     function refreshView() {
+
+      vm.showAllDayEventTips = false;
 
       vm.timeHidden = vm.dayViewTimePosition === 'hidden';
       vm.dayViewTimePositionOffset = vm.dayViewTimePosition !== 'default' ? 0 : 60;
@@ -1507,7 +1514,33 @@ angular
         vm.dayViewSplit,
         vm.dayViewSegmentSize
       );
-
+      angular.forEach(vm.events, function(dayEvent) {
+        var a1 = new Date(dayEvent.startsAt);
+        var a2 = new Date(dayEvent.endsAt);
+        //判断时间差;
+        var total = (a2.getTime() - a1.getTime()) / 1000;//相差的秒数;
+        var endTime = parseInt(total / ( 60 * 60));//计算是否超过24小时;
+        if (endTime >= 24) {
+          dayEvent.allDay = true;
+        } else {
+          let secondary = '';
+          if (dayEvent.calendarFlag == 1) {
+            // 日程
+            secondary = 'rgba(36, 161, 72, 0.15)';
+          } else if (dayEvent.calendarFlag == 2) {
+            // 任务
+            secondary = 'rgba(54, 168, 199, 0.15)';
+            if (dayEvent.calendarStatus == 2) {
+              secondary = 'rgba(251, 105, 99, 0.15)';
+            }
+          } else if (dayEvent.calendarFlag == 3) {
+            // 发布计划
+            secondary = 'rgba(36, 161, 72, 0.15)';
+          }
+          let color = {secondary: secondary};
+          dayEvent.color = color;
+        }
+      });
       var view = calendarHelper.getDayView(
         vm.events,
         vm.viewDate,
@@ -1517,11 +1550,11 @@ angular
         vm.dayViewEventWidth,
         vm.dayViewSegmentSize
       );
-
+      
       vm.allDayEvents = view.allDayEvents;
       vm.nonAllDayEvents = view.events;
       vm.viewWidth = view.width + 62;
-
+      
     }
 
     $scope.$on('calendar.refreshView', refreshView);
@@ -1531,6 +1564,24 @@ angular
       'vm.dayViewEnd',
       'vm.dayViewSplit'
     ], refreshView);
+
+    vm.showAllDayOver = function() {
+      $timeout(function() {
+        if (vm.showAllDayEventTips === true) {
+          vm.showAllDayEventTips = false;
+        } else {
+          vm.showAllDayEventTips = true;
+        }
+        $scope.$apply();
+      }, 100);
+    }
+
+    $window.onclick = function(event) {
+      if(event.srcElement && event.srcElement.className.indexOf('myShowClass')===-1) {
+        vm.showAllDayEventTips = false;
+        $scope.$apply();
+      }
+    };
 
     vm.eventDragComplete = function(event, minuteChunksMoved) {
       var minutesDiff = minuteChunksMoved * vm.dayViewSplit;
@@ -1546,6 +1597,7 @@ angular
     };
 
     vm.eventDragged = function(event, minuteChunksMoved) {
+      
       var minutesDiff = minuteChunksMoved * vm.dayViewSplit;
       event.tempStartsAt = moment(event.startsAt).add(minutesDiff, 'minutes').toDate();
     };
@@ -1652,7 +1704,6 @@ angular
     vm.scrollBarWidth = getScrollbarWidth();
 
     function updateDays() {
-
       vm.dayViewSplit = parseInt(vm.dayViewSplit);
       var dayStart = (vm.dayViewStart || '00:00').split(':');
       var dayEnd = (vm.dayViewEnd || '23:59').split(':');
@@ -1671,7 +1722,6 @@ angular
 
       vm.hourGrid.forEach(function(hour) {
         hour.segments.forEach(function(segment) {
-
           segment.date = moment(segment.date);
           segment.nextSegmentDate = segment.date.clone().add(vm.dayViewSplit, 'minutes');
 
@@ -2903,6 +2953,7 @@ angular
       } else {
         vm.view = calendarHelper.getWeekView(vm.events, vm.viewDate, vm.excludedDays);
       }
+      console.log(vm.view, "---*-*--*-*-*-*-*")
     });
 
     vm.weekDragged = function(event, daysDiff, minuteChunksMoved) {
@@ -3909,6 +3960,8 @@ angular
       },
       moment: {
         date: {
+          dayDate: 'MMM D',
+          dayHour: 'HH:mm',
           hour: 'ha',
           day: 'D MMM',
           month: 'MMMM',
@@ -4033,6 +4086,8 @@ var calendarUtils = __webpack_require__(4);
 angular
   .module('mwl.calendar')
   .factory('calendarHelper', ["$q", "$templateRequest", "dateFilter", "moment", "calendarConfig", function($q, $templateRequest, dateFilter, moment, calendarConfig) {
+
+    
 
     function formatDate(date, format) {
       if (calendarConfig.dateFormatter === 'angular') {

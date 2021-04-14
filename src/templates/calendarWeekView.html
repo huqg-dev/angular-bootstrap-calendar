@@ -1,7 +1,7 @@
 
 
   
-<div class="cal-week-box" ng-class="[{'cal-day-box': vm.showTimes}, 'cal-grid-' + vm.view.days.length]">
+<div class="cal-week-box" ng-class="[{'cal-day-box': vm.showTimes}, 'cal-grid-' + vm.view.days.length]" style="min-height:720px;">
   <div class="cal-row-fluid cal-row-head"
        mwl-element-dimensions="vm.dayColumnDimensions">
     <div
@@ -30,7 +30,7 @@
 
   </div>
 
-  <div class="cal-day-panel clearfix" ng-style="{height: vm.showTimes ? (vm.dayViewHeight + 'px') : 'auto'}" style="width:100%;">
+  <div class="cal-day-panel " ng-style="{height: vm.showTimes ? (vm.dayViewHeight + 'px') : 'auto'}" style="width:100%;">
 
     <mwl-calendar-hour-list
       day-view-start="vm.dayViewStart"
