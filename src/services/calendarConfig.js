@@ -30,6 +30,7 @@ angular
           day: 'D MMM',
           month: 'MMMM',
           weekDay: 'dddd',
+          weekDayShort: 'ddd',
           time: 'HH:mm',
           datetime: 'MMM D, h:mm a'
         },

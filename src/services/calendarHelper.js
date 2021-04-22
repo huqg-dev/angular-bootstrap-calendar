@@ -104,7 +104,7 @@ angular
         });
       })
       .map(function(i) {
-        return formatDate(moment().weekday(i), calendarConfig.dateFormats.weekDay);
+        return formatDate(moment().weekday(i), calendarConfig.dateFormats.weekDayShort);
       });
 
       return weekdays;
@@ -203,8 +203,8 @@ angular
         weekStartsOn: moment().startOf('week').day()
       }).map(function(day) {
         day.date = moment(day.date);
-        day.weekDayLabel = formatDate(day.date, calendarConfig.dateFormats.weekDay);
-        day.dayLabel = formatDate(day.date, calendarConfig.dateFormats.day);
+        day.weekDayLabel = formatDate(day.date, calendarConfig.dateFormats.weekDayShort);
+        day.dayLabel = formatDate(day.date, calendarConfig.dateFormats.dayDate);
         return day;
       });
 
