@@ -12,6 +12,7 @@ angular
     vm.calendarEventTitle = calendarEventTitle;
     vm.openRowIndex = null;
 
+
     function toggleCell() {
       vm.openRowIndex = null;
       vm.openDayIndex = null;
@@ -146,17 +147,6 @@ angular
       }
     };
 
-    // 展示详情
-    vm.showDetails = function(index) {
-      let overlay = document.getElementById("overlay-" + index);
-      overlay.classList.add('cal-overlay');
-      // 取消遮罩层
-      overlay.addEventListener('mouseout', () => {
-        console.log("mouseout ===>");
-        overlay.classList.remove('cal-overlay')
-      });
-    };
-
     vm.$onInit = function() {
 
       if (vm.cellAutoOpenDisabled) {
@@ -201,21 +191,4 @@ angular
       },
       bindToController: true
     };
-  })
-  .directive('showMore', function() {
-    return {
-      restrict: 'A',
-      link: function(scope, element, attrs) {
-         let totalHeight = element[0].offsetHeight - 28;
-         scope.day.events.forEach(event => {
-           totalHeight -= event.calendarFlag == 3 ? 52 : 23;
-           if (totalHeight > 10) {
-              event.show = true;
-           } else {
-             event.show = false;
-             scope.more = true;
-           }
-        })
-      }
-    }
   });
