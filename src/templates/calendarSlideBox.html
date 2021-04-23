@@ -1,7 +1,7 @@
-<div class="cal-slide-box" ng-class="['row-' + vm.rowIndex,  'col-' + vm.colIndex % 7]" uib-collapse="vm.isCollapsed" mwl-collapse-fallback="vm.isCollapsed">
+<div class="cal-slide-box" ng-if="vm.rowIndex && vm.colIndex" ng-class="['row-' + vm.rowIndex,  'col-' + vm.colIndex % 7]" uib-collapse="vm.isCollapsed" mwl-collapse-fallback="vm.isCollapsed">
   <div class="cal-slide-content cal-event-list">
     <ul class="unstyled list-unstyled">
-
+      <div class="month-label" ng-bind="vm.label"></div>
       <li
         ng-repeat="event in vm.events | orderBy:'startsAt' track by event.calendarEventId"
         ng-class="event.cssClass"
@@ -101,9 +101,7 @@
             <span title="{{event.calendarTitle}}">{{event.calendarTitle}}</span>
           </div>
         </div>
-
       </li>
-
     </ul>
   </div>
 </div>

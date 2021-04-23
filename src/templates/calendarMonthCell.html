@@ -6,6 +6,7 @@
   on-drag-select-move="vm.onDragSelectMove(day)"
   on-drag-select-end="vm.onDragSelectEnd(day)"
   class="cal-month-day {{ day.cssClass }}"
+  ng-click="$event.stopPropagation();vm.dayClicked(day, false, $event)"
   ng-class="{
     'cal-day-outmonth': !day.inMonth,
     'cal-day-inmonth': day.inMonth,
@@ -118,6 +119,6 @@
     </div>
   </div>
 
-  <div class="triangle-down" ng-if="day.events && day.events.length > 0" ng-click="vm.dayClicked(day, false, $event)"></div>
+  <div class="triangle-down" ng-if="day.events && day.events.length > 0" ng-click="$event.stopPropagation();vm.dayClicked(day, false, $event)"></div>
 
 </div>

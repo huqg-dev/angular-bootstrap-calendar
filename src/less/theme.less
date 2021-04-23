@@ -202,9 +202,17 @@ mwl-calendar {
         background: rgba(54, 168, 199, 0.15);
         border-left: 2px #5EB9D2 solid;
       }
-      &:hover {
+      &.expired-unfinished:hover {
         color: #fff;
-        background:#f5312a;
+        background:#f1453f;
+      }
+      &.expired-finished:hover {
+        color: #fff;
+        background:#5EB9D2;
+      }
+      &.expiring:hover {
+        color: #fff;
+        background:#5EB9D2;
       }
       .icon {
         width: 13px;

@@ -24,7 +24,7 @@ mwl-calendar .cal-month-box {
       position: relative;
       display: block;
       width: 100%;
-      height: 150px;
+      height: 140px;
       overflow: hidden;
       span[data-cal-date] {
         margin: -3px 0 0 10px;
@@ -104,9 +104,17 @@ mwl-calendar .cal-month-box {
             background: rgba(54, 168, 199, 0.15);
             border-left: 2px #5EB9D2 solid;
           }
-          &:hover {
+          &.expired-unfinished:hover {
             color: #fff;
-            background:#FB6963;
+            background:#f1453f;
+          }
+          &.expired-finished:hover {
+            color: #fff;
+            background:#5EB9D2;
+          }
+          &.expiring:hover {
+            color: #fff;
+            background:#5EB9D2;
           }
           .icon {
             width: 13px;
@@ -160,11 +168,11 @@ mwl-calendar .cal-month-box {
     .triangle-down {
       width: 10px;
       height: 10px;
-      margin: 0 0 0 48%;
+      margin: 10px 0 0 48%;
       padding-bottom: 0px;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-top: 6px solid #616F81;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 8px solid #616F81;
     }
   }
 
@@ -281,4 +289,12 @@ mwl-calendar .cal-month-box {
 }
 .row-4 {
   top:84.3%;
+}
+.month-label {
+  width: 100%;
+  height: 20px;
+  background: #9BACBB;
+  border-radius: 2px;
+  color: #fff;
+  padding-left: 4px;
 }
