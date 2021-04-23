@@ -118,6 +118,7 @@ angular
 
     vm.eventTimesChanged = function(event) {
       alert.show('时间变了', event);
+      console.log(event);
       console.log(vm.events);
     };
 
