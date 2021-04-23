@@ -30,6 +30,10 @@ angular
       link: function(scope, elm, attrs, ctrls) {
         scope.isMonthView = !!ctrls[0];
         scope.isYearView = !!ctrls[1];
+        elm[0].addEventListener('mouseout', event => {
+          scope.vm.isOpen = false;
+          scope.vm.isCollapsed = true;
+        })
       },
       scope: {
         isOpen: '=',
@@ -38,7 +42,9 @@ angular
         cell: '=',
         customTemplateUrls: '=?',
         templateScope: '=',
-        draggableAutoScroll: '='
+        draggableAutoScroll: '=',
+        rowIndex: '=',
+        colIndex: '='
       },
       bindToController: true
     };

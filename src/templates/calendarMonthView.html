@@ -12,7 +12,6 @@
         ng-init="dayIndex = vm.view.indexOf(day)"
         class="cal-cell1 cal-cell {{ day.highlightClass }}"
         ng-style="{backgroundColor: day.backgroundColor}"
-        ng-click="vm.dayClicked(day, false, $event)"
         ng-class="{pointer: day.events.length > 0}">
         <ng-include src="vm.customTemplateUrls.calendarMonthCell || vm.calendarConfig.templates.calendarMonthCell"></ng-include>
       </div>
@@ -25,7 +24,10 @@
       cell="vm.view[vm.openDayIndex]"
       custom-template-urls="vm.customTemplateUrls"
       template-scope="vm.templateScope"
-      draggable-auto-scroll="vm.draggableAutoScroll">
+      draggable-auto-scroll="vm.draggableAutoScroll"
+      row-index="vm.openRowIndex"
+      col-index="vm.openDayIndex"
+      style="width: 16%">
     </mwl-calendar-slide-box>
 
   </div>
