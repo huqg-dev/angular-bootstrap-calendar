@@ -29,13 +29,22 @@ angular
       } else {
         vm.view = calendarHelper.getWeekView(vm.events, vm.viewDate, vm.excludedDays);
       }
-      console.log(vm.view, "---*-*--*-*-*-*-*")
     });
 
     vm.weekDragged = function(event, daysDiff, minuteChunksMoved) {
 
-      var newStart = moment(event.startsAt).add(daysDiff, 'days');
-      var newEnd = moment(event.endsAt).add(daysDiff, 'days');
+      var newStart = moment(event.startsAt);
+      var newEnd = moment(event.endsAt);
+      let startTime = moment(event.startsAt).add(daysDiff, 'days').toDate();
+      let endTime = moment(event.endsAt).add(daysDiff, 'days').toDate();
+      if (startTime.getTime() < vm.view.days[0].date.toDate().getTime()) {
+        newStart = vm.view.days[0].date;
+      }
+      newStart = newStart.add(daysDiff, 'days');
+      if (endTime.getTime() > vm.view.days[vm.view.days.length - 1].date.toDate().getTime()) {
+        newEnd = vm.view.days[vm.view.days.length - 1].date.add(1, 'days');
+      }
+      newEnd.add(daysDiff, 'days');
 
       if (minuteChunksMoved) {
         var minutesDiff = minuteChunksMoved * vm.dayViewSplit;
@@ -58,12 +67,31 @@ angular
     };
 
     vm.weekResized = function(event, edge, daysDiff) {
-
+      console.log(edge, "edge======");
+      let startTime = moment(event.startsAt).add(daysDiff, 'days').toDate();
+      let endTime = moment(event.endsAt).add(daysDiff, 'days').toDate();
       var start = moment(event.startsAt);
       var end = moment(event.endsAt);
       if (edge === 'start') {
-        start.add(daysDiff, 'days');
+        if (startTime.getTime() < vm.view.days[0].date.toDate().getTime()) {
+          start = vm.view.days[0].date;
+        }
+        start = start.add(daysDiff, 'days');
+      } else if(edge === 'end') {
+        console.log("拖动end")
+        if (endTime.getTime() > vm.view.days[vm.view.days.length - 1].date.toDate().getTime()) {
+          end = vm.view.days[vm.view.days.length - 1].date.add(1, 'days');
+        }
+        end.add(daysDiff, 'days');
       } else {
+        debugger
+        if (startTime.getTime() < vm.view.days[0].date.toDate().getTime()) {
+          start = vm.view.days[0].date;
+        }
+        start = start.add(daysDiff, 'days');
+        if (endTime.getTime() > vm.view.days[vm.view.days.length - 1].date.toDate().getTime()) {
+          end = vm.view.days[vm.view.days.length - 1].date.add(1, 'days');
+        }
         end.add(daysDiff, 'days');
       }
 
