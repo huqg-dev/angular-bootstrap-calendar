@@ -1,5 +1,6 @@
 'use strict';
 
+const { element } = require('angular');
 var angular = require('angular');
 
 angular
@@ -30,10 +31,6 @@ angular
       link: function(scope, elm, attrs, ctrls) {
         scope.isMonthView = !!ctrls[0];
         scope.isYearView = !!ctrls[1];
-        elm[0].addEventListener('mouseout', event => {
-          scope.vm.isOpen = false;
-          scope.vm.isCollapsed = true;
-        })
       },
       scope: {
         isOpen: '=',
@@ -44,7 +41,8 @@ angular
         templateScope: '=',
         draggableAutoScroll: '=',
         rowIndex: '=',
-        colIndex: '='
+        colIndex: '=',
+        label: '='
       },
       bindToController: true
     };
