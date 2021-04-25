@@ -35,8 +35,8 @@ angular
 
       var newStart = moment(event.startsAt);
       var newEnd = moment(event.endsAt);
-      let startTime = moment(event.startsAt).add(daysDiff, 'days').toDate();
-      let endTime = moment(event.endsAt).add(daysDiff, 'days').toDate();
+      var startTime = moment(event.startsAt).add(daysDiff, 'days').toDate();
+      var endTime = moment(event.endsAt).add(daysDiff, 'days').toDate();
       if (startTime.getTime() < vm.view.days[0].date.toDate().getTime()) {
         newStart = vm.view.days[0].date;
       }
@@ -67,9 +67,8 @@ angular
     };
 
     vm.weekResized = function(event, edge, daysDiff) {
-      console.log(edge, "edge======");
-      let startTime = moment(event.startsAt).add(daysDiff, 'days').toDate();
-      let endTime = moment(event.endsAt).add(daysDiff, 'days').toDate();
+      var startTime = moment(event.startsAt).add(daysDiff, 'days').toDate();
+      var endTime = moment(event.endsAt).add(daysDiff, 'days').toDate();
       var start = moment(event.startsAt);
       var end = moment(event.endsAt);
       if (edge === 'start') {
@@ -78,13 +77,11 @@ angular
         }
         start = start.add(daysDiff, 'days');
       } else if(edge === 'end') {
-        console.log("拖动end")
         if (endTime.getTime() > vm.view.days[vm.view.days.length - 1].date.toDate().getTime()) {
           end = vm.view.days[vm.view.days.length - 1].date.add(1, 'days');
         }
         end.add(daysDiff, 'days');
       } else {
-        debugger
         if (startTime.getTime() < vm.view.days[0].date.toDate().getTime()) {
           start = vm.view.days[0].date;
         }

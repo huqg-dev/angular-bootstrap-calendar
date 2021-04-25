@@ -7,7 +7,7 @@
 
         <!-- 发布计划 -->
         <div class="cal-year-hidden-point cal-year-sub-div49 cal-green-low year-day-div-width183" 
-          ng-click="vm.onEventClick({calendarEvent: calEvent})"
+          ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 3 && calEvent.calendarStatus == 1"> 
           <div class="icon green-low"></div>
           <div class="cal-year-qz-word qz-word-color1 cal-year-content-width" style="margin-top:4px;">{{calEvent.calendarTitle}}</div>
@@ -17,7 +17,7 @@
         </div>
 
         <div class="cal-year-hidden-point cal-year-sub-div49 cal-green-low year-day-div-width183" 
-          ng-click="vm.onEventClick({calendarEvent: calEvent})"
+          ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 3 && calEvent.calendarStatus == 4"> 
           <div class="icon green-high"></div>
           <div class="cal-year-qz-word qz-word-color2 cal-year-content-width" style="margin-top:4px;">{{calEvent.calendarTitle}}</div>
@@ -28,7 +28,7 @@
 
         <!-- 任务 -->
         <div class="cal-year-hidden-point cal-year-sub-div20 cal-blue-low year-day-div-width183 year-day-div-height49" 
-          ng-click="vm.onEventClick({calendarEvent: calEvent})"
+          ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 1"> 
           <div class="icon blue-low"></div>
           <div class="cal-year-qz-word qz-word-color1 cal-year-content-width year-day-content">
@@ -37,7 +37,7 @@
         </div>
 
         <div class="cal-year-hidden-point cal-year-sub-div20 cal-red-low year-day-div-width183 year-day-div-height49" 
-          ng-click="vm.onEventClick({calendarEvent: calEvent})"
+          ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 2"> 
           <div class="icon red-high"></div>
           <div class="cal-year-qz-word qz-word-color4 cal-year-content-width year-day-content">
@@ -45,7 +45,8 @@
           </div>
         </div>
 
-        <div class="cal-year-hidden-point cal-year-sub-div20 cal-blue-low year-day-div-width183" ng-click="vm.onEventClick({calendarEvent: calEvent})"
+        <div class="cal-year-hidden-point cal-year-sub-div20 cal-blue-low year-day-div-width183" 
+          ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 4"> 
           <div class="icon blue-high"></div>
           <div class="cal-year-qz-word qz-word-color2 cal-year-content-width year-day-content">
@@ -55,7 +56,7 @@
 
         <!-- 日程 -->
         <div class="cal-year-sub-div20 cal-ori-low cal-year-hidden-point year-day-div-width18 year-day-div-height49"
-          ng-click="vm.onEventClick({calendarEvent: calEvent})"
+          ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 1 && calEvent.calendarStatus == 2"> 
           <div class="icon ori-low"></div>
           <div class="cal-year-qz-word qz-word-color1 cal-year-content-width year-day-content">
@@ -64,7 +65,7 @@
         </div>
 
         <div class="cal-year-sub-div20 cal-ori-low cal-year-hidden-point year-day-div-width183 year-day-div-height49" 
-          ng-click="vm.onEventClick({calendarEvent: calEvent})"
+          ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 1 && calEvent.calendarStatus == 4"> 
           <div class="icon ori-high"></div>
           <div class="cal-year-qz-word qz-word-color2 cal-year-content-width year-day-content">
@@ -88,7 +89,7 @@
 
         <!-- 发布计划 -->
         <div class="cal-year-hidden-point cal-year-sub-div49 cal-green-low year-day-div-width365" 
-          ng-click="vm.onEventClick({calendarEvent: calEvent})"
+          ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 3 && calEvent.calendarStatus == 1"> 
           <div class="icon green-low"></div>
           <div class="cal-year-qz-word qz-word-color1 cal-year-content-width" style="margin-top:4px;">{{calEvent.calendarTitle}}</div>
@@ -98,7 +99,7 @@
         </div>
 
         <div class="cal-year-hidden-point cal-year-sub-div49 cal-green-low year-day-div-width365" 
-          ng-click="vm.onEventClick({calendarEvent: calEvent})"
+          ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 3 && calEvent.calendarStatus == 4"> 
           <div class="icon green-high"></div>
           <div class="cal-year-qz-word qz-word-color2 cal-year-content-width" style="margin-top:4px;">{{calEvent.calendarTitle}}</div>
@@ -109,7 +110,7 @@
 
         <!-- 任务 -->
         <div class="cal-year-hidden-point cal-year-sub-div20 cal-blue-low year-day-div-width365 year-day-div-height49" 
-          ng-click="vm.onEventClick({calendarEvent: calEvent})"
+          ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 1"> 
           <div class="icon blue-low"></div>
           <div class="cal-year-qz-word qz-word-color1 cal-year-content-width year-day-content">
@@ -118,7 +119,7 @@
         </div>
 
         <div class="cal-year-hidden-point cal-year-sub-div20 cal-red-low year-day-div-width365 year-day-div-height49" 
-          ng-click="vm.onEventClick({calendarEvent: calEvent})"
+          ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 2"> 
           <div class="icon red-high"></div>
           <div class="cal-year-qz-word qz-word-color4 cal-year-content-width year-day-content">
@@ -126,7 +127,8 @@
           </div>
         </div>
 
-        <div class="cal-year-hidden-point cal-year-sub-div20 cal-blue-low year-day-div-width365" ng-click="vm.onEventClick({calendarEvent: calEvent})"
+        <div class="cal-year-hidden-point cal-year-sub-div20 cal-blue-low year-day-div-width365" 
+          ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 4"> 
           <div class="icon blue-high"></div>
           <div class="cal-year-qz-word qz-word-color2 cal-year-content-width year-day-content">
@@ -136,7 +138,7 @@
 
         <!-- 日程 -->
         <div class="cal-year-sub-div20 cal-ori-low cal-year-hidden-point year-day-div-width365 year-day-div-height49"
-          ng-click="vm.onEventClick({calendarEvent: calEvent})"
+          ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 1 && calEvent.calendarStatus == 2"> 
           <div class="icon ori-low"></div>
           <div class="cal-year-qz-word qz-word-color1 cal-year-content-width year-day-content">
@@ -145,7 +147,7 @@
         </div>
 
         <div class="cal-year-sub-div20 cal-ori-low cal-year-hidden-point year-day-div-width365 year-day-div-height49" 
-          ng-click="vm.onEventClick({calendarEvent: calEvent})"
+          ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 1 && calEvent.calendarStatus == 4"> 
           <div class="icon ori-high"></div>
           <div class="cal-year-qz-word qz-word-color2 cal-year-content-width year-day-content">

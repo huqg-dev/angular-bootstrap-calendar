@@ -5,7 +5,7 @@ angular
     var vm = this;
 
     //These variables MUST be set as a minimum for the calendar to work
-    vm.calendarView = 'week';
+    vm.calendarView = 'day';
     vm.yearViewStart = 0;
     vm.yearViewEnd = 11;
     vm.viewDate = new Date();
@@ -104,8 +104,9 @@ angular
       });
     };
 
-    vm.eventClicked = function(event) {
-      alert.show('Clicked', event);
+    vm.eventClicked = function(event, eventEl) {
+      console.log(eventEl);
+      alert.show('我点击你了', event);
     };
 
     vm.eventEdited = function(event) {

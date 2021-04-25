@@ -33,7 +33,7 @@ angular
         if (endTime >= 24) {
           dayEvent.allDay = true;
         } else {
-          let secondary = '';
+          var secondary = '';
           if (dayEvent.calendarFlag == 1) {
             // 日程
             secondary = 'rgba(36, 161, 72, 0.15)';
@@ -47,7 +47,7 @@ angular
             // 发布计划
             secondary = 'rgba(36, 161, 72, 0.15)';
           }
-          let color = {secondary: secondary};
+          var color = {secondary: secondary};
           dayEvent.color = color;
         }
       });

@@ -52,7 +52,7 @@
     view="vm.calendarView"
     view-title="vm.calendarTitle"
     view-date="vm.viewDate"
-    on-event-click="vm.eventClicked(calendarEvent)"
+    on-event-click="vm.eventClicked(calendarEvent, eventEl)"
     on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
     cell-is-open="vm.cellIsOpen"
     year-view-start="vm.yearViewStart"

@@ -1,6 +1,5 @@
 'use strict';
 
-const { element } = require('angular');
 var angular = require('angular');
 
 angular

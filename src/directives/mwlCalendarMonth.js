@@ -1,7 +1,6 @@
 'use strict';
 
 var angular = require('angular');
-const moment = require('moment');
 
 angular
   .module('mwl.calendar')
@@ -11,7 +10,6 @@ angular
     vm.calendarConfig = calendarConfig;
     vm.calendarEventTitle = calendarEventTitle;
     vm.openRowIndex = null;
-
 
     function toggleCell() {
       vm.openRowIndex = null;
