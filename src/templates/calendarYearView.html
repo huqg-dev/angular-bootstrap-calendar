@@ -1,7 +1,7 @@
 
 <div class="cal-year-box">
   <div style="overflow-x: auto;">
-    <div class="row cal-before-eventlist" style="float:left;display:flex;">
+    <div class="row cal-before-eventlist" style="display:flex;">
       <div style="min-height:720px;"
         class="span3 cal-year-div-qz cal-cell {{ day.cssClass }}"
         ng-repeat="month in vm.view"
@@ -53,7 +53,7 @@
 
         <!-- 任务 -->
         <div class="cal-year-hidden-point cal-year-sub-div20 cal-blue-low" 
-          ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
+          ng-click="vm.onEventClick({calendarEvent: calEvent})"
           ng-mousedown="$event.stopPropagation()"
           mwl-draggable="calEvent.draggable === true"
           drop-data="{event: calEvent}"
@@ -65,7 +65,7 @@
         </div>
 
         <div class="cal-year-hidden-point cal-year-sub-div20 cal-red-low" 
-          ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
+          ng-click="vm.onEventClick({calendarEvent: calEvent})"
           ng-mousedown="$event.stopPropagation()"
           mwl-draggable="calEvent.draggable === true"
           drop-data="{event: calEvent}"
@@ -77,7 +77,7 @@
         </div>
 
         <div class="cal-year-hidden-point cal-year-sub-div20 cal-blue-low" 
-          ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
+          ng-click="vm.onEventClick({calendarEvent: calEvent})"
           ng-mousedown="$event.stopPropagation()"
           mwl-draggable="calEvent.draggable === true"
           drop-data="{event: calEvent}"
@@ -90,7 +90,7 @@
 
         <!-- 日程 -->
         <div class="cal-year-sub-div20 cal-ori-low cal-year-hidden-point" 
-          ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
+          ng-click="vm.onEventClick({calendarEvent: calEvent})"
           ng-mousedown="$event.stopPropagation()"
           mwl-draggable="calEvent.draggable === true"
           drop-data="{event: calEvent}"
@@ -102,7 +102,7 @@
         </div>
 
         <div class="cal-year-sub-div20 cal-ori-low cal-year-hidden-point" 
-          ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
+          ng-click="vm.onEventClick({calendarEvent: calEvent})"
           ng-mousedown="$event.stopPropagation()"
           mwl-draggable="calEvent.draggable === true"
           drop-data="{event: calEvent}"

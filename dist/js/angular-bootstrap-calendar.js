@@ -4253,7 +4253,8 @@ angular
       }
 
       if (parseInt(yearViewStart) >= 0 && parseInt(yearViewEnd) <= 11 && parseInt(yearViewEnd) > parseInt(yearViewStart)) {
-        view = view.splice(parseInt(yearViewStart) - 1, parseInt(yearViewEnd) - parseInt(yearViewStart) + 1);
+        var endIndex = parseInt(yearViewEnd) - parseInt(yearViewStart) + 1;
+        view = view.splice(parseInt(yearViewStart), endIndex);
       } 
     
       return view;

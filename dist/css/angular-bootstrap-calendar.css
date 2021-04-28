@@ -1313,6 +1313,24 @@ mwl-calendar .day-highlight {
 .cal-year-sub-div49 .green-high {
   background: #4FB36C;
 }
+.cal-year-sub-div49 .ori-high {
+  background: #FFAE63;
+}
+.cal-year-sub-div49 .ori-low {
+  background: rgba(255, 154, 61, 0.15);
+}
+.cal-year-sub-div49 .blue-low {
+  background: rgba(54, 168, 199, 0.15);
+}
+.cal-year-sub-div49 .blue-high {
+  background: #5EB9D2;
+}
+.cal-year-sub-div49 .red-high {
+  background: #FB6963;
+}
+.cal-year-sub-div49 :hover {
+  color: #FFFFFF;
+}
 .cal-green-low {
   background: rgba(36, 161, 72, 0.15);
 }
