@@ -24,7 +24,6 @@ angular
 
     $scope.$on('calendar.refreshView', function() {
       vm.view = calendarHelper.getYearView(vm.events, vm.viewDate, vm.cellModifier, vm.yearViewStart, vm.yearViewEnd);
-      console.log(vm)
       if (vm.cellAutoOpenDisabled) {
         toggleCell();
       } else if (!vm.cellAutoOpenDisabled && vm.cellIsOpen && vm.openMonthIndex === null) {
