@@ -1,8 +1,9 @@
 <div style="height:59px;position: relative;">
-    <div style="float:left;width:62px;height: 100%;border: solid 1px #e1e1e1;border-right: 0px;border-bottom: 0px;padding-top: 20px;" 
+    <div style="float:left;width:62px;height: 100%;border: solid 1px #e1e1e1;border-right: 0px;
+      border-bottom: 0px;padding-top: 20px;" 
       align="center"><strong>全天</strong>
     </div>
-    <div style="float:left;width:calc(100% - 102px);height: 100%;border: solid 1px #e1e1e1;border-bottom: 0px;">
+    <div style="float:left;width:calc(100% - 102px);height: 100%;border: solid 1px #e1e1e1;border-bottom: 0px;border-right: 0px;">
       <div ng-repeat="calEvent in vm.allDayEvents" class="year-day-col-md-2 year-day-item-line" >
 
         <!-- 发布计划 -->
@@ -10,8 +11,9 @@
           ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 3 && calEvent.calendarStatus == 1"> 
           <div class="icon green-low"></div>
-          <div class="cal-year-qz-word qz-word-color1 cal-year-content-width" style="margin-top:4px;">{{calEvent.calendarTitle}}</div>
-          <div class="cal-year-qz-word qz-word-color1 cal-year-content-width">
+          <div class="cal-year-qz-word qz-word-color1 cal-year-content-width cal-year-hidden-point" 
+            style="margin-top:4px;" title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></div>
+          <div class="cal-year-qz-word qz-word-color1 cal-year-content-width cal-year-hidden-point">
             <span style="width:80%;" title="{{calEvent.calendarPubSub}}">{{calEvent.calendarPubSub}}</span>
           </div>
         </div>
@@ -20,8 +22,9 @@
           ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 3 && calEvent.calendarStatus == 4"> 
           <div class="icon green-high"></div>
-          <div class="cal-year-qz-word qz-word-color2 cal-year-content-width" style="margin-top:4px;">{{calEvent.calendarTitle}}</div>
-          <div class="cal-year-qz-word qz-word-color3 cal-year-content-width">
+          <div class="cal-year-qz-word qz-word-color2 cal-year-content-width cal-year-hidden-point" 
+            style="margin-top:4px;" title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></div>
+          <div class="cal-year-qz-word qz-word-color3 cal-year-content-width cal-year-hidden-point">
             <span style="width:80%;" title="{{calEvent.calendarPubSub}}">{{calEvent.calendarPubSub}}</span>
           </div>
         </div>
@@ -31,8 +34,8 @@
           ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 1"> 
           <div class="icon blue-low"></div>
-          <div class="cal-year-qz-content qz-word-color1 cal-year-content-width">
-            <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          <div class="cal-year-qz-content qz-word-color1 cal-year-content-width cal-year-hidden-point">
+            <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
           </div>
         </div>
 
@@ -40,8 +43,8 @@
           ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 2"> 
           <div class="icon red-high"></div>
-          <div class="cal-year-qz-content qz-word-color4 cal-year-content-width">
-            <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          <div class="cal-year-qz-content qz-word-color4 cal-year-content-width cal-year-hidden-point">
+            <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
           </div>
         </div>
 
@@ -49,8 +52,8 @@
           ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 4"> 
           <div class="icon blue-high"></div>
-          <div class="cal-year-qz-content qz-word-color2 cal-year-content-width">
-            <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          <div class="cal-year-qz-content qz-word-color2 cal-year-content-width cal-year-hidden-point">
+            <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
           </div>
         </div>
 
@@ -59,8 +62,8 @@
           ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 1 && calEvent.calendarStatus == 2"> 
           <div class="icon ori-low"></div>
-          <div class="cal-year-qz-content qz-word-color1 cal-year-content-width">
-            <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          <div class="cal-year-qz-content qz-word-color1 cal-year-content-width cal-year-hidden-point">
+            <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
           </div>
         </div>
 
@@ -68,8 +71,8 @@
           ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 1 && calEvent.calendarStatus == 4"> 
           <div class="icon ori-high"></div>
-          <div class="cal-year-qz-content qz-word-color2 cal-year-content-width">
-            <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          <div class="cal-year-qz-content qz-word-color2 cal-year-content-width cal-year-hidden-point">
+            <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
           </div>
         </div>
 
@@ -79,6 +82,10 @@
 
     </div>
 
+    <div style="float:left;width:40px;height: 100%;border: solid 1px #e1e1e1;border-left: 0px;border-bottom: 0px;border-left: 0px;" 
+      ng-if="vm.allDayEvents.length<=6"
+      align="center" class="myShowClass">
+    </div>
     <div style="float:left;width:40px;height: 100%;border: solid 1px #e1e1e1;border-left: 0px;border-bottom: 0px;" 
       ng-if="vm.allDayEvents.length>6"
       align="center" class="myShowClass">
@@ -93,8 +100,9 @@
           ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 3 && calEvent.calendarStatus == 1"> 
           <div class="icon green-low"></div>
-          <div class="cal-year-qz-word qz-word-color1 cal-year-content-width" style="margin-top:4px;">{{calEvent.calendarTitle}}</div>
-          <div class="cal-year-qz-word qz-word-color1 cal-year-content-width">
+          <div class="cal-year-qz-word qz-word-color1 cal-year-content-width cal-year-hidden-point" 
+            style="margin-top:4px;" title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></div>
+          <div class="cal-year-qz-word qz-word-color1 cal-year-content-width cal-year-hidden-point">
             <span style="width:80%;" title="{{calEvent.calendarPubSub}}">{{calEvent.calendarPubSub}}</span>
           </div>
         </div>
@@ -103,8 +111,9 @@
           ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 3 && calEvent.calendarStatus == 4"> 
           <div class="icon green-high"></div>
-          <div class="cal-year-qz-word qz-word-color2 cal-year-content-width" style="margin-top:4px;">{{calEvent.calendarTitle}}</div>
-          <div class="cal-year-qz-word qz-word-color3 cal-year-content-width">
+          <div class="cal-year-qz-word qz-word-color2 cal-year-content-width cal-year-hidden-point" 
+            style="margin-top:4px;" title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></div>
+          <div class="cal-year-qz-word qz-word-color3 cal-year-content-width cal-year-hidden-point">
             <span style="width:80%;" title="{{calEvent.calendarPubSub}}">{{calEvent.calendarPubSub}}</span>
           </div>
         </div>
@@ -114,8 +123,8 @@
           ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 1"> 
           <div class="icon blue-low"></div>
-          <div class="cal-year-qz-content qz-word-color1 cal-year-content-width">
-            <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          <div class="cal-year-qz-content qz-word-color1 cal-year-content-width cal-year-hidden-point">
+            <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle"></span>
           </div>
         </div>
 
@@ -123,8 +132,8 @@
           ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 2"> 
           <div class="icon red-high"></div>
-          <div class="cal-year-qz-content qz-word-color4 cal-year-content-width">
-            <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          <div class="cal-year-qz-content qz-word-color4 cal-year-content-width cal-year-hidden-point">
+            <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
           </div>
         </div>
 
@@ -132,8 +141,8 @@
           ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 4"> 
           <div class="icon blue-high"></div>
-          <div class="cal-year-qz-content qz-word-color2 cal-year-content-width">
-            <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          <div class="cal-year-qz-content qz-word-color2 cal-year-content-width cal-year-hidden-point">
+            <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
           </div>
         </div>
 
@@ -142,8 +151,8 @@
           ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 1 && calEvent.calendarStatus == 2"> 
           <div class="icon ori-low"></div>
-          <div class="cal-year-qz-content qz-word-color1 cal-year-content-width">
-            <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          <div class="cal-year-qz-content qz-word-color1 cal-year-content-width cal-year-hidden-point">
+            <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
           </div>
         </div>
 
@@ -151,8 +160,8 @@
           ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
           ng-if="calEvent.calendarFlag == 1 && calEvent.calendarStatus == 4"> 
           <div class="icon ori-high"></div>
-          <div class="cal-year-qz-content qz-word-color2 cal-year-content-width">
-            <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          <div class="cal-year-qz-content qz-word-color2 cal-year-content-width cal-year-hidden-point">
+            <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
           </div>
         </div>
 
@@ -225,8 +234,7 @@
 
       <span style="word-break: normal;width: 100%;display: block;margin-top: 12px;word-wrap: break-word;overflow: hidden ">
         <span ng-show="dayEvent.event.calendarTitle" title="{{dayEvent.event.calendarTitle}}" 
-          style="color: #2F3E4B;font-weight: 600;">
-          {{dayEvent.event.calendarTitle}}
+          style="color: #2F3E4B;font-weight: 600;" ng-bind-html="dayEvent.event.calendarTitle | calendarTrustAsHtml">
         </span>
         <br><br>
         <span ng-show="dayEvent.event.calendarTitle" title="{{dayEvent.event.calendarPubSub}}"

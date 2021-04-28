@@ -15,10 +15,11 @@ angular
         alert.show('Edited', args.calendarEvent);
       }
     }];
+
     vm.events = [
       {
         calendarFlag: 3,
-        calendarTitle: 'SHTERM/3.3.5…',
+        calendarTitle: 'SHTERM/3.3.5…SHTERM/3.3.5…SHTERM/3.3.5…SHTERM/3.3.5…SHTERM/3.3.5…SHTERM/3.3.5…',
         calendarStatus: 1,
         calendarPubSub: '标准补丁/5人·天',
         calendarPubDate: '4.12',
@@ -29,7 +30,7 @@ angular
         actions: actions
       }, {
         calendarFlag: 3,
-        calendarTitle: 'SHTERM/3.3.5…',
+        calendarTitle: 'SHTERM/3.3.5…SHTERM/3.3.5…SHTERM/3.3.5…SHTERM/3.3.5…SHTERM/3.3.5…SHTERM/3.3.5…SHTERM/3.3.5…',
         calendarStatus: 4,
         calendarPubSub: '标准补丁/5人·天',
         calendarPubDate: '4.15',
@@ -51,9 +52,9 @@ angular
         actions: actions
       },
       {
-        calendarFlag: 1,
-        calendarTitle: '部门周会哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈部门周会哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈部门周会哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈啊哈',
-        calendarStatus: 4,
+        calendarFlag: 2,
+        calendarTitle: '部门周会',
+        calendarStatus: 1,
         startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
         endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
         draggable: true,
@@ -70,131 +71,21 @@ angular
         actions: actions
       }, {
         calendarFlag: 2,
-        calendarStatus: 2,
-        calendarTitle: '14:00 实施-产品巡检',
-        startsAt: moment().startOf('day').add(7, 'hours').toDate(),
-        endsAt: moment().startOf('day').add(19, 'hours').toDate(),
-        recursOn: 'year',
-        draggable: true,
-        resizable: true,
-        actions: actions
-      }, {
-        calendarFlag: 2,
-        calendarStatus: 4,
-        calendarTitle: '14:00 实施-产品巡检',
-        startsAt: moment().startOf('day').add(7, 'hours').toDate(),
-        endsAt: moment().startOf('day').add(19, 'hours').toDate(),
-        recursOn: 'year',
-        draggable: true,
-        resizable: true,
-        actions: actions
-      }, {
-        calendarFlag: 3,
-        calendarTitle: 'SHTERM/3.3.5…',
-        calendarStatus: 4,
-        calendarPubSub: '标准补丁/5人·天',
-        calendarPubDate: '4.15',
-        startsAt: moment().subtract(1, 'day').toDate(),
-        endsAt: moment().add(5, 'days').toDate(),
-        draggable: true,
-        resizable: true,
-        actions: actions
-      }, {
-        calendarFlag: 3,
-        calendarTitle: 'SHTERM/3.3.5…',
-        calendarStatus: 4,
-        calendarPubSub: '标准补丁/5人·天',
-        calendarPubDate: '4.15',
-        startsAt: moment().subtract(1, 'day').toDate(),
-        endsAt: moment().add(5, 'days').toDate(),
-        draggable: true,
-        resizable: true,
-        actions: actions
-      }, {
-        calendarFlag: 3,
-        calendarTitle: 'SHTERM/3.3.5…',
-        calendarStatus: 4,
-        calendarPubSub: '标准补丁/5人·天',
-        calendarPubDate: '4.15',
-        startsAt: moment().subtract(1, 'day').toDate(),
-        endsAt: moment().add(5, 'days').toDate(),
-        draggable: true,
-        resizable: true,
-        actions: actions
-      }, {
-        calendarFlag: 3,
-        calendarTitle: 'SHTERM/3.3.5…',
-        calendarStatus: 4,
-        calendarPubSub: '标准补丁/5人·天',
-        calendarPubDate: '4.15',
-        startsAt: moment().subtract(1, 'day').toDate(),
-        endsAt: moment().add(5, 'days').toDate(),
-        draggable: true,
-        resizable: true,
-        actions: actions
-      }, {
-        calendarFlag: 3,
-        calendarTitle: 'SHTERM/3.3.5…',
-        calendarStatus: 4,
-        calendarPubSub: '标准补丁/5人·天',
-        calendarPubDate: '4.15',
-        startsAt: moment().subtract(1, 'day').toDate(),
-        endsAt: moment().add(5, 'days').toDate(),
-        draggable: true,
-        resizable: true,
-        actions: actions
-      }, {
-        calendarFlag: 3,
-        calendarTitle: 'SHTERM/3.3.5…',
-        calendarStatus: 4,
-        calendarPubSub: '标准补丁/5人·天',
-        calendarPubDate: '4.15',
-        startsAt: moment().subtract(1, 'day').toDate(),
-        endsAt: moment().add(5, 'days').toDate(),
-        draggable: true,
-        resizable: true,
-        actions: actions
-      }, {
-        calendarFlag: 3,
-        calendarTitle: 'SHTERM/3.3.5…',
-        calendarStatus: 4,
-        calendarPubSub: '标准补丁/5人·天',
-        calendarPubDate: '4.15',
-        startsAt: moment().subtract(1, 'day').toDate(),
-        endsAt: moment().add(5, 'days').toDate(),
-        draggable: true,
-        resizable: true,
-        actions: actions
-      }, {
-        calendarFlag: 2,
-        calendarTitle: 'SHTERM/3.3.5…',
-        calendarStatus: 3,
-        calendarPubSub: '标准补丁/5人·天',
-        calendarPubDate: '4.15',
-        startsAt: moment().subtract(1, 'day').toDate(),
-        endsAt: moment().add(5, 'days').toDate(),
-        draggable: true,
-        resizable: true,
-        actions: actions
-      }, {
-        calendarFlag: 2,
-        calendarTitle: 'asdasdasdaseasdasdasdqwaqsadasdasdasaasas',
-        calendarStatus: 2,
-        calendarPubSub: '标准补丁/5人·天',
-        calendarPubDate: '4.15',
-        startsAt: moment().subtract(1, 'day').toDate(),
-        endsAt: moment().add(5, 'days').toDate(),
-        draggable: true,
-        resizable: true,
-        actions: actions
-      }, {
-        calendarFlag: 3,
-        calendarTitle: 'SHTERM/3.3.5…',
         calendarStatus: 1,
-        calendarPubSub: '标准补丁/5人·天',
-        calendarPubDate: '4.15',
-        startsAt: moment().subtract(1, 'day').toDate(),
-        endsAt: moment().add(5, 'days').toDate(),
+        calendarTitle: '14:00 实施-产品巡检',
+        startsAt: moment().startOf('day').add(7, 'hours').toDate(),
+        endsAt: moment().startOf('day').add(19, 'hours').toDate(),
+        recursOn: 'year',
+        draggable: true,
+        resizable: true,
+        actions: actions
+      }, {
+        calendarFlag: 2,
+        calendarStatus: 1,
+        calendarTitle: '14:00 实施-产品巡检',
+        startsAt: moment().startOf('day').add(7, 'hours').toDate(),
+        endsAt: moment().startOf('day').add(19, 'hours').toDate(),
+        recursOn: 'year',
         draggable: true,
         resizable: true,
         actions: actions

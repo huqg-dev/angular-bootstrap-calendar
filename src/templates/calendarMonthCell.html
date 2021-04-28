@@ -34,7 +34,7 @@
         ng-if="calEvent.calendarFlag == 3 && calEvent.calendarStatus == 1"> 
         <div class="cal-events-title">
           <span class="icon"></span>
-          <div class="cal-events-title" title="{{calEvent.calendarTitle}}" ng-bind="calEvent.calendarTitle"></div>
+          <div class="cal-events-title" title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></div>
         </div>
         <div class="cal-events-content">
           <span title="{{calEvent.calendarPubSub}}" ng-bind="calEvent.calendarPubSub"></span>
@@ -48,7 +48,7 @@
         auto-scroll="vm.draggableAutoScroll"
         ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
         ng-if="calEvent.calendarFlag == 3 && calEvent.calendarStatus == 4"> 
-        <div class="cal-events-title" title="{{calEvent.calendarTitle}}" ng-bind="calEvent.calendarTitle"></div>
+        <div class="cal-events-title" title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></div>
         <div class="cal-events-content">
           <span title="{{calEvent.calendarPubSub}}" ng-bind="calEvent.calendarPubSub"></span>
           <span class="pull-right" title="{{calEvent.calendarPubDate}}" ng-bind="calEvent.calendarPubDate"></span>
@@ -64,7 +64,7 @@
         ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 1"> 
         <span class="icon"></span>
         <div class="cal-events-title">
-          <span title="{{calEvent.calendarTitle}}" ng-bind="calEvent.calendarTitle"></span>
+          <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
         </div>
       </div>
 
@@ -76,7 +76,7 @@
         ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 2"> 
         <span class="icon"></span>
         <div class="cal-events-title">
-          <span title="{{calEvent.calendarTitle}}" ng-bind="calEvent.calendarTitle"></span>
+          <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
         </div>
       </div>
 
@@ -88,7 +88,7 @@
         ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 4"> 
         <span class="icon"></span>
         <div class="cal-events-title">
-          <span title="{{calEvent.calendarTitle}}" ng-bind="calEvent.calendarTitle"></span>
+          <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
         </div>
       </div>
 
@@ -101,7 +101,7 @@
         ng-if="calEvent.calendarFlag == 1 && calEvent.calendarStatus == 2"> 
         <span class="icon"></span>
         <div class="cal-events-title">
-          <span title="{{calEvent.calendarTitle}}" ng-bind="calEvent.calendarTitle"></span>
+          <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
         </div>
       </div>
 
@@ -113,7 +113,7 @@
         ng-if="calEvent.calendarFlag == 1 && calEvent.calendarStatus == 4"> 
         <span class="icon"></span>
         <div class="cal-events-title">
-          <span title="{{calEvent.calendarTitle}}" ng-bind="calEvent.calendarTitle"></span>
+          <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
         </div>
       </div>
     </div>

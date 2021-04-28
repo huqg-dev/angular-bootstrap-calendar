@@ -2955,6 +2955,7 @@ angular
       } else {
         vm.view = calendarHelper.getWeekView(vm.events, vm.viewDate, vm.excludedDays);
       }
+      console.log(vm)
     });
 
     vm.weekDragged = function(event, daysDiff, minuteChunksMoved) {
@@ -2968,7 +2969,8 @@ angular
       }
       newStart = newStart.add(daysDiff, 'days');
       if (endTime.getTime() > vm.view.days[vm.view.days.length - 1].date.toDate().getTime()) {
-        newEnd = vm.view.days[vm.view.days.length - 1].date.add(1, 'days');
+        newEnd = vm.view.days[vm.view.days.length - 1].date;
+        daysDiff = (endTime.getTime() - vm.view.days[vm.view.days.length - 1].date.toDate().getTime()) / (1000 * 60 * 60 * 24)
       }
       newEnd.add(daysDiff, 'days');
 
@@ -3096,6 +3098,7 @@ angular
 
     $scope.$on('calendar.refreshView', function() {
       vm.view = calendarHelper.getYearView(vm.events, vm.viewDate, vm.cellModifier, vm.yearViewStart, vm.yearViewEnd);
+      console.log(vm)
       if (vm.cellAutoOpenDisabled) {
         toggleCell();
       } else if (!vm.cellAutoOpenDisabled && vm.cellIsOpen && vm.openMonthIndex === null) {
@@ -3998,9 +4001,9 @@ angular
           datetime: 'MMM D, h:mm a'
         },
         title: {
-          day: 'dddd D MMMM, YYYY',
-          week: 'Week {week} of {year}',
-          month: 'MMMM YYYY',
+          day: 'YYYY MMMM D dddd',
+          week: '{year} 第 {week} 周',
+          month: 'YYYY MMMM',
           year: 'YYYY'
         }
       }
@@ -4249,7 +4252,7 @@ angular
         yearViewEnd = 11;
       }
 
-      if (parseInt(yearViewStart) > 0 && parseInt(yearViewEnd) < 11 && parseInt(yearViewEnd) > parseInt(yearViewStart)) {
+      if (parseInt(yearViewStart) >= 0 && parseInt(yearViewEnd) <= 11 && parseInt(yearViewEnd) > parseInt(yearViewStart)) {
         view = view.splice(parseInt(yearViewStart) - 1, parseInt(yearViewEnd) - parseInt(yearViewStart) + 1);
       } 
     
