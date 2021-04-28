@@ -6,7 +6,7 @@
   on-drag-select-move="vm.onDragSelectMove(day)"
   on-drag-select-end="vm.onDragSelectEnd(day)"
   class="cal-month-day {{ day.cssClass }}"
-  ng-click="$event.stopPropagation();vm.dayClicked(day, false, $event)"
+  ng-click="$event.stopPropagation();(!day.events || day.events.length == 0) && vm.dayClicked(day, false, $event)"
   ng-class="{
     'cal-day-outmonth': !day.inMonth,
     'cal-day-inmonth': day.inMonth,
@@ -30,15 +30,15 @@
         mwl-draggable="calEvent.draggable === true"
         drop-data="{event: calEvent, draggedFromDate: day.date.toDate()}"
         auto-scroll="vm.draggableAutoScroll"
-        ng-click="vm.onEventClick({calendarEvent: calEvent})"
+        ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
         ng-if="calEvent.calendarFlag == 3 && calEvent.calendarStatus == 1"> 
         <div class="cal-events-title">
           <span class="icon"></span>
-          {{calEvent.calendarTitle}}
+          <div class="cal-events-title" title="{{calEvent.calendarTitle}}" ng-bind="calEvent.calendarTitle"></div>
         </div>
         <div class="cal-events-content">
-          <span title="{{calEvent.calendarPubSub}}">{{calEvent.calendarPubSub}}</span>
-          <span class="pull-right" title="{{calEvent.calendarPubDate}}">{{calEvent.calendarPubDate}}</span>
+          <span title="{{calEvent.calendarPubSub}}" ng-bind="calEvent.calendarPubSub"></span>
+          <span class="pull-right" title="{{calEvent.calendarPubDate}}" ng-bind="calEvent.calendarPubDate"></span>
         </div>
       </div>
 
@@ -46,17 +46,17 @@
         mwl-draggable="calEvent.draggable === true"
         drop-data="{event: calEvent, draggedFromDate: day.date.toDate()}"
         auto-scroll="vm.draggableAutoScroll"
-        ng-click="vm.onEventClick({calendarEvent: calEvent})"
+        ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
         ng-if="calEvent.calendarFlag == 3 && calEvent.calendarStatus == 4"> 
-        <div class="cal-events-title">{{calEvent.calendarTitle}}</div>
+        <div class="cal-events-title" title="{{calEvent.calendarTitle}}" ng-bind="calEvent.calendarTitle"></div>
         <div class="cal-events-content">
-          <span title="{{calEvent.calendarPubSub}}">{{calEvent.calendarPubSub}}</span>
-          <span class="pull-right" title="{{calEvent.calendarPubDate}}">{{calEvent.calendarPubDate}}</span>
+          <span title="{{calEvent.calendarPubSub}}" ng-bind="calEvent.calendarPubSub"></span>
+          <span class="pull-right" title="{{calEvent.calendarPubDate}}" ng-bind="calEvent.calendarPubDate"></span>
         </div>
       </div>
 
       <!-- 任务 -->
-      <div class="data-cal-events-2 expired-unfinished" 
+      <div class="data-cal-events-2 expired-finished" 
         mwl-draggable="calEvent.draggable === true"
         drop-data="{event: calEvent, draggedFromDate: day.date.toDate()}"
         auto-scroll="vm.draggableAutoScroll"
@@ -64,11 +64,11 @@
         ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 1"> 
         <span class="icon"></span>
         <div class="cal-events-title">
-          <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          <span title="{{calEvent.calendarTitle}}" ng-bind="calEvent.calendarTitle"></span>
         </div>
       </div>
 
-      <div class="data-cal-events-2 expired-finished"
+      <div class="data-cal-events-2 expired-unfinished"
         mwl-draggable="calEvent.draggable === true" 
         drop-data="{event: calEvent, draggedFromDate: day.date.toDate()}"
         auto-scroll="vm.draggableAutoScroll"
@@ -76,7 +76,7 @@
         ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 2"> 
         <span class="icon"></span>
         <div class="cal-events-title">
-          <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          <span title="{{calEvent.calendarTitle}}" ng-bind="calEvent.calendarTitle"></span>
         </div>
       </div>
 
@@ -88,7 +88,7 @@
         ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 4"> 
         <span class="icon"></span>
         <div class="cal-events-title">
-          <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          <span title="{{calEvent.calendarTitle}}" ng-bind="calEvent.calendarTitle"></span>
         </div>
       </div>
 
@@ -101,7 +101,7 @@
         ng-if="calEvent.calendarFlag == 1 && calEvent.calendarStatus == 2"> 
         <span class="icon"></span>
         <div class="cal-events-title">
-          <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          <span title="{{calEvent.calendarTitle}}" ng-bind="calEvent.calendarTitle"></span>
         </div>
       </div>
 
@@ -113,7 +113,7 @@
         ng-if="calEvent.calendarFlag == 1 && calEvent.calendarStatus == 4"> 
         <span class="icon"></span>
         <div class="cal-events-title">
-          <span title="{{calEvent.calendarTitle}}">{{calEvent.calendarTitle}}</span>
+          <span title="{{calEvent.calendarTitle}}" ng-bind="calEvent.calendarTitle"></span>
         </div>
       </div>
     </div>
