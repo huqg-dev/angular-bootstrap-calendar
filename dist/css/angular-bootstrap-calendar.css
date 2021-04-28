@@ -726,6 +726,15 @@ mwl-calendar .cal-year-qz-word {
   font-family: PingFangSC-Medium, PingFang SC;
   line-height: 20px;
 }
+mwl-calendar .cal-year-qz-content {
+  height: 49px;
+  font-size: 14px;
+  font-family: PingFangSC-Medium, PingFang SC;
+  line-height: 49px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 mwl-calendar .qz-word-color1 {
   font-weight: 500;
   color: #9BACBB;
@@ -1106,7 +1115,7 @@ mwl-calendar .cal-month-box .cal-day-selected {
 }
 .cal-week-div-qz {
   float: left;
-  min-width: 231px;
+  min-width: 14.29%;
 }
 .calendarFlagBg {
   border-radius: 2px;
@@ -1238,6 +1247,19 @@ mwl-calendar-day.time-on-side .cal-day-panel {
 mwl-calendar-day.time-on-side .cal-day-hour-part-time {
   margin-left: -55px;
 }
+.year-day-col-md-2 {
+  width: 16.66666667%;
+}
+.year-day-col-md-12 {
+  width: 100%;
+}
+.year-day-item-line {
+  float: left;
+}
+.year-day-item-line year-day-col-md-12 {
+  float: left;
+  margin-left: 4px;
+}
 mwl-calendar .event {
   display: block;
   background-color: #c3c3c3;
@@ -1290,6 +1312,24 @@ mwl-calendar .day-highlight {
 }
 .cal-year-sub-div49 .green-high {
   background: #4FB36C;
+}
+.cal-year-sub-div49 .ori-high {
+  background: #FFAE63;
+}
+.cal-year-sub-div49 .ori-low {
+  background: rgba(255, 154, 61, 0.15);
+}
+.cal-year-sub-div49 .blue-low {
+  background: rgba(54, 168, 199, 0.15);
+}
+.cal-year-sub-div49 .blue-high {
+  background: #5EB9D2;
+}
+.cal-year-sub-div49 .red-high {
+  background: #FB6963;
+}
+.cal-year-sub-div49 :hover {
+  color: #FFFFFF;
 }
 .cal-green-low {
   background: rgba(36, 161, 72, 0.15);
@@ -1355,10 +1395,6 @@ mwl-calendar .day-highlight {
 }
 .year-day-div-height49 {
   height: 49px !important;
-}
-.year-day-content {
-  height: 100% !important;
-  padding-top: 14px !important;
 }
 .year-more-button {
   width: 28px;

@@ -35,9 +35,9 @@ angular
           datetime: 'MMM D, h:mm a'
         },
         title: {
-          day: 'dddd D MMMM, YYYY',
-          week: 'Week {week} of {year}',
-          month: 'MMMM YYYY',
+          day: 'YYYY MMMM D dddd',
+          week: '{year} 第 {week} 周',
+          month: 'YYYY MMMM',
           year: 'YYYY'
         }
       }
