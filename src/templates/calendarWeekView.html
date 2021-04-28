@@ -10,7 +10,8 @@
         'cal-day-today': day.isToday,
         'cal-day-future': day.isFuture}"
       mwl-droppable
-      on-drop="vm.eventDropped(dropData.event, day.date)">
+      on-drop="vm.eventDropped(dropData.event, day.date)"
+      style="border-right: 1px solid #DEE3E5;">
 
       <span ng-bind="day.weekDayLabel"></span>
       <br>
@@ -72,12 +73,10 @@
               auto-scroll="vm.draggableAutoScroll"
               on-drag="vm.tempTimeChanged(eventRow.event, y / 30)"
               on-drag-end="vm.weekDragged(eventRow.event, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length), y / 30)"
-              mwl-resizable="eventRow.event.resizable === true && eventRow.event.endsAt && !vm.showTimes"
-              resize-edges="{left: true, right: true}"
-              on-resize-end="vm.weekResized(eventRow.event, edge, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length))">
+              mwl-resizable="eventRow.event.resizable === true && eventRow.event.endsAt && !vm.showTimes">
               <div class="icon green-low"></div>
               <div class="calendarFlagBg_title" style="margin-top:4px;">
-                {{eventRow.event.calendarTitle}}
+                {{eventRow.event.calendarTitle}} 222
               </div>
               <div class="calendarFlagBg3_content">
                 <span style="width:80%;">{{eventRow.event.calendarPubSub}}</span>
@@ -107,9 +106,7 @@
               auto-scroll="vm.draggableAutoScroll"
               on-drag="vm.tempTimeChanged(eventRow.event, y / 30)"
               on-drag-end="vm.weekDragged(eventRow.event, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length), y / 30)"
-              mwl-resizable="eventRow.event.resizable === true && eventRow.event.endsAt && !vm.showTimes"
-              resize-edges="{left: true, right: true}"
-              on-resize-end="vm.weekResized(eventRow.event, edge, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length), x / vm.dayColumnDimensions.width)">
+              mwl-resizable="eventRow.event.resizable === true && eventRow.event.endsAt && !vm.showTimes">
               <div class="icon green-low"></div>
               <div class="cal-year-qz-word qz-word-color1 cal-year-content-width" style="margin-top:4px;">
                 {{eventRow.event.calendarTitle}}

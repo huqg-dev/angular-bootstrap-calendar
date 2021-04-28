@@ -29,6 +29,7 @@ angular
       } else {
         vm.view = calendarHelper.getWeekView(vm.events, vm.viewDate, vm.excludedDays);
       }
+      console.log(vm)
     });
 
     vm.weekDragged = function(event, daysDiff, minuteChunksMoved) {
@@ -42,7 +43,8 @@ angular
       }
       newStart = newStart.add(daysDiff, 'days');
       if (endTime.getTime() > vm.view.days[vm.view.days.length - 1].date.toDate().getTime()) {
-        newEnd = vm.view.days[vm.view.days.length - 1].date.add(1, 'days');
+        newEnd = vm.view.days[vm.view.days.length - 1].date;
+        daysDiff = (endTime.getTime() - vm.view.days[vm.view.days.length - 1].date.toDate().getTime()) / (1000 * 60 * 60 * 24)
       }
       newEnd.add(daysDiff, 'days');
 
