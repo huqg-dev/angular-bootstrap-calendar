@@ -29,37 +29,36 @@ angular
       } else {
         vm.view = calendarHelper.getWeekView(vm.events, vm.viewDate, vm.excludedDays);
       }
-      console.log(vm)
     });
 
     vm.weekDragged = function(event, daysDiff, minuteChunksMoved) {
-
       var newStart = moment(event.startsAt);
       var newEnd = moment(event.endsAt);
-      var startTime = moment(event.startsAt).add(daysDiff, 'days').toDate();
-      var endTime = moment(event.endsAt).add(daysDiff, 'days').toDate();
-      if (startTime.getTime() < vm.view.days[0].date.toDate().getTime()) {
+      if (newEnd.toDate().getTime() > vm.view.days[vm.view.days.length - 1].date.toDate().getTime()) {
+        newEnd = vm.view.days[vm.view.days.length - 1].date;
+      }
+      if (newStart.toDate().getTime() < vm.view.days[0].date.toDate().getTime()) {
         newStart = vm.view.days[0].date;
       }
       newStart = newStart.add(daysDiff, 'days');
-      if (endTime.getTime() > vm.view.days[vm.view.days.length - 1].date.toDate().getTime()) {
-        newEnd = vm.view.days[vm.view.days.length - 1].date;
-        daysDiff = (endTime.getTime() - vm.view.days[vm.view.days.length - 1].date.toDate().getTime()) / (1000 * 60 * 60 * 24)
+      if (newStart.toDate().getTime() < vm.view.days[0].date.toDate().getTime()) {
+        return;
       }
-      newEnd.add(daysDiff, 'days');
+      newEnd = newEnd.add(daysDiff, 'days');
+      if (newEnd.toDate().getTime() > vm.view.days[vm.view.days.length - 1].date.toDate().getTime()) {
+        return;
+      }
 
       if (minuteChunksMoved) {
         var minutesDiff = minuteChunksMoved * vm.dayViewSplit;
         newStart = newStart.add(minutesDiff, 'minutes');
         newEnd = newEnd.add(minutesDiff, 'minutes');
       }
-
       delete event.tempStartsAt;
-
       vm.onEventTimesChanged({
         calendarEvent: event,
         calendarNewEventStart: newStart.toDate(),
-        calendarNewEventEnd: event.endsAt ? newEnd.toDate() : null
+        calendarNewEventEnd: newEnd.toDate()
       });
     };
 
@@ -93,7 +92,6 @@ angular
         }
         end.add(daysDiff, 'days');
       }
-
       vm.onEventTimesChanged({
         calendarEvent: event,
         calendarNewEventStart: start.toDate(),
