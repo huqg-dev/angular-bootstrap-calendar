@@ -240,6 +240,28 @@ angular
 
         eventRow.row = eventRow.row.map(function(rowEvent) {
           rowEvent.event = rowEvent.event.originalEvent;
+          // 重新组装周视图的日期
+          if (rowEvent.event.startsAt.getTime() < moment().startOf("week")._d.getTime()) {
+            let startStrTime = moment(rowEvent.event.startsAt).format('HH:mm:ss');
+            let startStrYear = moment().startOf('week').format('YYYY-MM-DD');
+            rowEvent.event.startsAt = moment(startStrYear + " " + startStrTime, "YYYY-MM-DD HH:mm:ss").toDate();
+          }
+          if (rowEvent.event.endsAt.getTime() > moment().endOf("week")._d.getTime()) {
+            let endStrTime = moment(rowEvent.event.endsAt).format('HH:mm:ss');
+            let endStrYear = moment().endOf('week').format('YYYY-MM-DD');
+            rowEvent.event.endsAt = moment(endStrYear + " " + endStrTime, "YYYY-MM-DD HH:mm:ss").toDate()
+          }
+          var at = moment(moment(rowEvent.event.endsAt).endOf('days').toDate()).format('YYYY-MM-DD')
+          var to = moment(moment(rowEvent.event.startsAt).endOf('days')).format('YYYY-MM-DD')
+          console.log (moment(at).diff(to, 'day'))
+          let value = moment(at).diff(to, 'day') + 1;
+          if (value > 7) {
+            rowEvent.span = 7;
+          } else if(value == 0) {
+            rowEvent.span = 1;
+          } else {
+            rowEvent.span = value;
+          }
           return rowEvent;
         });
 
