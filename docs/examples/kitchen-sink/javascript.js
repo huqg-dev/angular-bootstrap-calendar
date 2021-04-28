@@ -98,6 +98,7 @@ angular
         endsAt: moment().add(5, 'days').toDate(),
         draggable: true,
         resizable: true,
+        allday: true,
         actions: actions
       }, {
         calendarFlag: 3,
@@ -109,6 +110,7 @@ angular
         endsAt: moment().add(5, 'days').toDate(),
         draggable: true,
         resizable: true,
+        allday: true,
         actions: actions
       }, {
         calendarFlag: 3,
@@ -120,6 +122,7 @@ angular
         endsAt: moment().add(5, 'days').toDate(),
         draggable: true,
         resizable: true,
+        allday: true,
         actions: actions
       }, {
         calendarFlag: 3,
@@ -127,10 +130,11 @@ angular
         calendarStatus: 4,
         calendarPubSub: '标准补丁/5人·天',
         calendarPubDate: '4.15',
-        startsAt: moment().subtract(1, 'day').toDate(),
-        endsAt: moment().add(5, 'days').toDate(),
+        startsAt: moment().toDate(),
+        endsAt: moment().toDate(),
         draggable: true,
         resizable: true,
+        allday: true,
         actions: actions
       }, {
         calendarFlag: 3,

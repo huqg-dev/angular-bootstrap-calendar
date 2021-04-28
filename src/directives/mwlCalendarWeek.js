@@ -29,23 +29,39 @@ angular
       } else {
         vm.view = calendarHelper.getWeekView(vm.events, vm.viewDate, vm.excludedDays);
       }
+      // debugger
+      for (let eventRow of vm.view.eventRows) {
+        if (eventRow) {
+          for (let row of eventRow.row) {
+            let startDayNumber = moment(row.startsAt).format('D');
+            let endDayNumber = moment(row.endsAt).format('D');
+            console.log(startDayNumber + "--" + endDayNumber);
+          }
+        }
+      }
     });
 
     vm.weekDragged = function(event, daysDiff, minuteChunksMoved) {
+      // debugger
       var newStart = moment(event.startsAt);
       var newEnd = moment(event.endsAt);
-      if (newEnd.toDate().getTime() > vm.view.days[vm.view.days.length - 1].date.toDate().getTime()) {
-        newEnd = vm.view.days[vm.view.days.length - 1].date;
+      if (newEnd.toDate().getTime() > moment().endOf('week').toDate().getTime()) {
+        let endStrTime = moment(newEnd).format('HH:mm:ss');
+        let endStrYear = moment().endOf('week').format('YYYY-MM-DD');
+        newEnd = moment(moment(endStrYear + " " + endStrTime, "YYYY-MM-DD HH:mm:ss").toDate());
       }
-      if (newStart.toDate().getTime() < vm.view.days[0].date.toDate().getTime()) {
-        newStart = vm.view.days[0].date;
+      if (newStart.toDate().getTime() < moment().startOf('week').toDate().getTime()) {
+        let startStrTime = moment(newStart).format('HH:mm:ss');
+        let startStrYear = moment().startOf('week').format('YYYY-MM-DD');
+        newStart = moment(moment(startStrYear + " " + startStrTime, "YYYY-MM-DD HH:mm:ss").toDate());
       }
-      newStart = newStart.add(daysDiff, 'days');
-      if (newStart.toDate().getTime() < vm.view.days[0].date.toDate().getTime()) {
+      newStart = moment(newStart.add(daysDiff, 'days')._d);
+      if (newStart._d.getTime() < moment().startOf('week').toDate().getTime()) {
         return;
       }
-      newEnd = newEnd.add(daysDiff, 'days');
-      if (newEnd.toDate().getTime() > vm.view.days[vm.view.days.length - 1].date.toDate().getTime()) {
+      newEnd = moment(moment(newEnd._i).add(daysDiff, 'days')._d);
+      // debugger
+      if (newEnd._d.getTime() > moment().endOf('week').toDate().getTime()) {
         return;
       }
 
