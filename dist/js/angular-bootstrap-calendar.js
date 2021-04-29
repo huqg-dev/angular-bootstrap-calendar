@@ -2955,37 +2955,52 @@ angular
       } else {
         vm.view = calendarHelper.getWeekView(vm.events, vm.viewDate, vm.excludedDays);
       }
-      console.log(vm)
+      // debugger
+      for (let eventRow of vm.view.eventRows) {
+        if (eventRow) {
+          for (let row of eventRow.row) {
+            let startDayNumber = moment(row.startsAt).format('D');
+            let endDayNumber = moment(row.endsAt).format('D');
+            console.log(startDayNumber + "--" + endDayNumber);
+          }
+        }
+      }
     });
 
     vm.weekDragged = function(event, daysDiff, minuteChunksMoved) {
-
+      // debugger
       var newStart = moment(event.startsAt);
       var newEnd = moment(event.endsAt);
-      var startTime = moment(event.startsAt).add(daysDiff, 'days').toDate();
-      var endTime = moment(event.endsAt).add(daysDiff, 'days').toDate();
-      if (startTime.getTime() < vm.view.days[0].date.toDate().getTime()) {
-        newStart = vm.view.days[0].date;
+      if (newEnd.toDate().getTime() > moment().endOf('week').toDate().getTime()) {
+        let endStrTime = moment(newEnd).format('HH:mm:ss');
+        let endStrYear = moment().endOf('week').format('YYYY-MM-DD');
+        newEnd = moment(moment(endStrYear + " " + endStrTime, "YYYY-MM-DD HH:mm:ss").toDate());
       }
-      newStart = newStart.add(daysDiff, 'days');
-      if (endTime.getTime() > vm.view.days[vm.view.days.length - 1].date.toDate().getTime()) {
-        newEnd = vm.view.days[vm.view.days.length - 1].date;
-        daysDiff = (endTime.getTime() - vm.view.days[vm.view.days.length - 1].date.toDate().getTime()) / (1000 * 60 * 60 * 24)
+      if (newStart.toDate().getTime() < moment().startOf('week').toDate().getTime()) {
+        let startStrTime = moment(newStart).format('HH:mm:ss');
+        let startStrYear = moment().startOf('week').format('YYYY-MM-DD');
+        newStart = moment(moment(startStrYear + " " + startStrTime, "YYYY-MM-DD HH:mm:ss").toDate());
       }
-      newEnd.add(daysDiff, 'days');
+      newStart = moment(newStart.add(daysDiff, 'days')._d);
+      if (newStart._d.getTime() < moment().startOf('week').toDate().getTime()) {
+        return;
+      }
+      newEnd = moment(moment(newEnd._i).add(daysDiff, 'days')._d);
+      // debugger
+      if (newEnd._d.getTime() > moment().endOf('week').toDate().getTime()) {
+        return;
+      }
 
       if (minuteChunksMoved) {
         var minutesDiff = minuteChunksMoved * vm.dayViewSplit;
         newStart = newStart.add(minutesDiff, 'minutes');
         newEnd = newEnd.add(minutesDiff, 'minutes');
       }
-
       delete event.tempStartsAt;
-
       vm.onEventTimesChanged({
         calendarEvent: event,
         calendarNewEventStart: newStart.toDate(),
-        calendarNewEventEnd: event.endsAt ? newEnd.toDate() : null
+        calendarNewEventEnd: newEnd.toDate()
       });
     };
 
@@ -3019,7 +3034,6 @@ angular
         }
         end.add(daysDiff, 'days');
       }
-
       vm.onEventTimesChanged({
         calendarEvent: event,
         calendarNewEventStart: start.toDate(),
@@ -3098,7 +3112,6 @@ angular
 
     $scope.$on('calendar.refreshView', function() {
       vm.view = calendarHelper.getYearView(vm.events, vm.viewDate, vm.cellModifier, vm.yearViewStart, vm.yearViewEnd);
-      console.log(vm)
       if (vm.cellAutoOpenDisabled) {
         toggleCell();
       } else if (!vm.cellAutoOpenDisabled && vm.cellIsOpen && vm.openMonthIndex === null) {
@@ -4351,6 +4364,28 @@ angular
 
         eventRow.row = eventRow.row.map(function(rowEvent) {
           rowEvent.event = rowEvent.event.originalEvent;
+          // 重新组装周视图的日期
+          if (rowEvent.event.startsAt.getTime() < moment().startOf("week")._d.getTime()) {
+            let startStrTime = moment(rowEvent.event.startsAt).format('HH:mm:ss');
+            let startStrYear = moment().startOf('week').format('YYYY-MM-DD');
+            rowEvent.event.startsAt = moment(startStrYear + " " + startStrTime, "YYYY-MM-DD HH:mm:ss").toDate();
+          }
+          if (rowEvent.event.endsAt.getTime() > moment().endOf("week")._d.getTime()) {
+            let endStrTime = moment(rowEvent.event.endsAt).format('HH:mm:ss');
+            let endStrYear = moment().endOf('week').format('YYYY-MM-DD');
+            rowEvent.event.endsAt = moment(endStrYear + " " + endStrTime, "YYYY-MM-DD HH:mm:ss").toDate()
+          }
+          var at = moment(moment(rowEvent.event.endsAt).endOf('days').toDate()).format('YYYY-MM-DD')
+          var to = moment(moment(rowEvent.event.startsAt).endOf('days')).format('YYYY-MM-DD')
+          console.log (moment(at).diff(to, 'day'))
+          let value = moment(at).diff(to, 'day') + 1;
+          if (value > 7) {
+            rowEvent.span = 7;
+          } else if(value == 0) {
+            rowEvent.span = 1;
+          } else {
+            rowEvent.span = value;
+          }
           return rowEvent;
         });
 

@@ -11,7 +11,7 @@ angular
     vm.viewDate = new Date();
     var actions = [{
       label: '<i class=\'glyphicon glyphicon-pencil\'></i>',
-      onClick: function(args) {
+      onClick: function(args, eventEl) {
         alert.show('Edited', args.calendarEvent);
       }
     }];
