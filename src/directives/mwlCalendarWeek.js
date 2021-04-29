@@ -29,16 +29,6 @@ angular
       } else {
         vm.view = calendarHelper.getWeekView(vm.events, vm.viewDate, vm.excludedDays);
       }
-      // debugger
-      for (let eventRow of vm.view.eventRows) {
-        if (eventRow) {
-          for (let row of eventRow.row) {
-            let startDayNumber = moment(row.startsAt).format('D');
-            let endDayNumber = moment(row.endsAt).format('D');
-            console.log(startDayNumber + "--" + endDayNumber);
-          }
-        }
-      }
     });
 
     vm.weekDragged = function(event, daysDiff, minuteChunksMoved) {
