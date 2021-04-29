@@ -62,8 +62,8 @@ angular
         actions: actions
       }, {
         calendarFlag: 2,
-        calendarStatus: 1,
-        calendarTitle: '0:10 服务-产品部署',
+        calendarStatus: 2,
+        calendarTitle: '0:10 服务-产品部署嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻',
         startsAt: moment().subtract(1, 'day').toDate(),
         endsAt: moment().add(5, 'days').toDate(),
         draggable: true,

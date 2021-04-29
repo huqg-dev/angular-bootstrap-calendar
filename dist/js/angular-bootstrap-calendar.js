@@ -1526,7 +1526,7 @@ angular
           var secondary = '';
           if (dayEvent.calendarFlag == 1) {
             // 日程
-            secondary = 'rgba(36, 161, 72, 0.15)';
+            secondary = 'rgba(255, 154, 61, 0.15)';
           } else if (dayEvent.calendarFlag == 2) {
             // 任务
             secondary = 'rgba(54, 168, 199, 0.15)';

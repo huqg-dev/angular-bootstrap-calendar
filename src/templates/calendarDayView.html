@@ -216,12 +216,6 @@
         ~
         <span ng-bind="(dayEvent.event.tempStartsAt || dayEvent.event.endsAt) | calendarDate:'time':true"></span>
       </span>
-      <a
-        href="javascript:;"
-        class="event-item"
-        ng-click="vm.onEventClick({calendarEvent: dayEvent.event})">
-        <span ng-bind-html="vm.calendarEventTitle.dayView(dayEvent.event) | calendarTrustAsHtml"></span>
-      </a>
 
       <a ng-show="true"
         href="javascript:;"

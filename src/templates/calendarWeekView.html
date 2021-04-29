@@ -74,7 +74,7 @@
               on-drag="vm.tempTimeChanged(eventRow.event, y / 30)"
               on-drag-end="vm.weekDragged(eventRow.event, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length), y / 30)"
               mwl-resizable="eventRow.event.resizable === true && eventRow.event.endsAt && !vm.showTimes"
-              title="{{eventRow.event.calendarTitle}}">
+              title="{{eventRow.event.title}}">
               <div class="icon green-low"></div>
               <div class="calendarFlagBg_title" style="margin-top:4px;" ng-bind-html="eventRow.event.calendarTitle | calendarTrustAsHtml">
               </div>
@@ -107,7 +107,7 @@
               on-drag="vm.tempTimeChanged(eventRow.event, y / 30)"
               on-drag-end="vm.weekDragged(eventRow.event, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length), y / 30)"
               mwl-resizable="eventRow.event.resizable === true && eventRow.event.endsAt && !vm.showTimes"
-              title="{{eventRow.event.calendarTitle}}">
+              title="{{eventRow.event.title}}">
               <div class="icon green-low"></div>
               <div class="cal-year-qz-word qz-word-color1 cal-year-content-width" style="margin-top:4px;" ng-bind-html="eventRow.event.calendarTitle | calendarTrustAsHtml">
               </div>
@@ -144,10 +144,42 @@
               mwl-resizable="eventRow.event.resizable === true && eventRow.event.endsAt && !vm.showTimes"
               resize-edges="{left: true, right: true}"
               on-resize-end="vm.weekResized(eventRow.event, edge, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length))"
-              title="{{eventRow.event.calendarTitle}}">
+              title="{{eventRow.event.title}}">
               <div class="icon blue-low"></div>
               <div class="calendarFlagBg_title">
-                <span title="{{eventRow.event.calendarTitle}}" ng-bind-html="eventRow.event.calendarTitle | calendarTrustAsHtml"></span>
+                <span title="{{eventRow.event.title}}" ng-bind-html="eventRow.event.calendarTitle | calendarTrustAsHtml"></span>
+                <a
+                  href="javascript:;"
+                  class="event-item-action"
+                  ng-class="action.cssClass"
+                  ng-repeat="action in eventRow.event.actions track by $index"
+                  ng-bind-html="action.label | calendarTrustAsHtml"
+                  ng-click="action.onClick({calendarEvent: eventRow.event})">
+                </a>
+              </div>
+            </div>
+            <!-- 
+              ng-if="eventRow.event.calendarFlag == 2 && eventRow.event.calendarStatus == 1"
+             -->
+            <div
+              class="day-highlight"
+              ng-if="eventRow.event.calendarFlag == 2 && eventRow.event.calendarStatus == 2"
+              ng-class="[eventRow.event.cssClass, !vm.showTimes && eventRow.startsBeforeWeek ? '' : 'border-left-rounded', !vm.showTimes && eventRow.endsAfterWeek ? '' : 'border-right-rounded']"
+              style="border-radius: 2px;height: 20px;margin-top:4px;background: rgba(251, 105, 99, 0.15); border-left: 2px solid #FB6963;"
+              data-event-class
+              mwl-draggable="eventRow.event.draggable === true"
+              axis="vm.showTimes ? 'xy' : 'x'"
+              snap-grid="vm.showTimes ? {x: (vm.dayColumnDimensions.width - 60) / vm.view.days.length, y: vm.dayViewEventChunkSize || 30} : {x: vm.dayColumnDimensions.width / vm.view.days.length}"
+              auto-scroll="vm.draggableAutoScroll"
+              on-drag="vm.tempTimeChanged(eventRow.event, y / 30)"
+              on-drag-end="vm.weekDragged(eventRow.event, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length), y / 30)"
+              mwl-resizable="eventRow.event.resizable === true && eventRow.event.endsAt && !vm.showTimes"
+              resize-edges="{left: true, right: true}"
+              on-resize-end="vm.weekResized(eventRow.event, edge, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length))"
+              title="{{eventRow.event.title}}">
+              <div class="icon blue-low"></div>
+              <div class="calendarFlagBg_title">
+                <span title="{{eventRow.event.title}}" style="color: #FB6963;" ng-bind-html="eventRow.event.calendarTitle | calendarTrustAsHtml"></span>
                 <a
                   href="javascript:;"
                   class="event-item-action"
@@ -176,10 +208,10 @@
               mwl-resizable="eventRow.event.resizable === true && eventRow.event.endsAt && !vm.showTimes"
               resize-edges="{left: true, right: true}"
               on-resize-end="vm.weekResized(eventRow.event, edge, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length))"
-              title="{{eventRow.event.calendarTitle}}">
+              title="{{eventRow.event.title}}">
               <div class="icon blue-low"></div>
               <div class="cal-year-qz-word qz-word-color1 cal-year-content-width">
-                <span title="{{eventRow.event.calendarTitle}}" ng-bind-html="eventRow.event.calendarTitle | calendarTrustAsHtml"></span>
+                <span title="{{eventRow.event.title}}" ng-bind-html="eventRow.event.calendarTitle | calendarTrustAsHtml"></span>
                 <a
                   href="javascript:;"
                   class="event-item-action"
@@ -192,8 +224,38 @@
             </div>
 
             <!-- 日程 -->
+            <div
+              class="day-highlight"
+              ng-if="eventRow.event.calendarFlag == 1 && eventRow.event.calendarStatus == 1"
+              ng-class="[eventRow.event.cssClass, !vm.showTimes && eventRow.startsBeforeWeek ? '' : 'border-left-rounded', !vm.showTimes && eventRow.endsAfterWeek ? '' : 'border-right-rounded']"
+              style="border-radius: 2px;height: 20px;margin-top:4px;background: rgba(255, 154, 61, 0.15);border-left: 2px solid #FFAE63;"
+              data-event-class
+              mwl-draggable="eventRow.event.draggable === true"
+              axis="vm.showTimes ? 'xy' : 'x'"
+              snap-grid="vm.showTimes ? {x: (vm.dayColumnDimensions.width - 60) / vm.view.days.length, y: vm.dayViewEventChunkSize || 30} : {x: vm.dayColumnDimensions.width / vm.view.days.length}"
+              auto-scroll="vm.draggableAutoScroll"
+              on-drag="vm.tempTimeChanged(eventRow.event, y / 30)"
+              on-drag-end="vm.weekDragged(eventRow.event, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length), y / 30)"
+              mwl-resizable="eventRow.event.resizable === true && eventRow.event.endsAt && !vm.showTimes"
+              resize-edges="{left: true, right: true}"
+              on-resize-end="vm.weekResized(eventRow.event, edge, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length))"
+              title="{{eventRow.event.title}}">
+              <div class="icon blue-low"></div>
+              <div class="calendarFlagBg_title">
+                <span title="{{eventRow.event.title}}" ng-bind-html="eventRow.event.calendarTitle | calendarTrustAsHtml"></span>
+                <a
+                  href="javascript:;"
+                  class="event-item-action"
+                  ng-class="action.cssClass"
+                  ng-repeat="action in eventRow.event.actions track by $index"
+                  ng-bind-html="action.label | calendarTrustAsHtml"
+                  ng-click="action.onClick({calendarEvent: eventRow.event})">
+                </a>
+              </div>
+            </div>
             <!-- 
               ng-if="eventRow.event.calendarFlag == 1 && eventRow.event.calendarStatus == 2"
+              rgba(251, 105, 99, 0.15); border-left: 2px solid #FB6963;"
              -->
             <div
               class="day-highlight"
@@ -210,10 +272,10 @@
               mwl-resizable="eventRow.event.resizable === true && eventRow.event.endsAt && !vm.showTimes"
               resize-edges="{left: true, right: true}"
               on-resize-end="vm.weekResized(eventRow.event, edge, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length))"
-              title="{{eventRow.event.calendarTitle}}">
+              title="{{eventRow.event.title}}">
               <div class="icon blue-low"></div>
               <div class="calendarFlagBg_title">
-                <span title="{{eventRow.event.calendarTitle}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
+                <span title="{{eventRow.event.title}}" ng-bind-html="eventRow.event.calendarTitle | calendarTrustAsHtml"></span>
                 <a
                   href="javascript:;"
                   class="event-item-action"
@@ -224,6 +286,7 @@
                 </a>
               </div>
             </div>
+            
             <!-- 
               ng-if="eventRow.event.calendarFlag == 1 && eventRow.event.calendarStatus == 4"
              -->
@@ -242,10 +305,10 @@
               mwl-resizable="eventRow.event.resizable === true && eventRow.event.endsAt && !vm.showTimes"
               resize-edges="{left: true, right: true}"
               on-resize-end="vm.weekResized(eventRow.event, edge, x / ((vm.dayColumnDimensions.width - (vm.showTimes ? 60 : 0)) / vm.view.days.length))"
-              title="{{eventRow.event.calendarTitle}}">
+              title="{{eventRow.event.title}}">
               <div class="icon blue-low"></div>
               <div class="cal-year-qz-word qz-word-color1 cal-year-content-width">
-                <span title="{{eventRow.event.calendarTitle}}" ng-bind-html="eventRow.event.calendarTitle | calendarTrustAsHtml"></span>
+                <span title="{{eventRow.event.title}}" ng-bind-html="eventRow.event.calendarTitle | calendarTrustAsHtml"></span>
                 <a
                   href="javascript:;"
                   class="event-item-action"
