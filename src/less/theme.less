@@ -179,7 +179,7 @@ mwl-calendar {
     .data-cal-events-2 {
       height: 20px;
       width: 100%;
-      padding: 1px 4px 0 4px;
+      padding: 0 4px 0 4px;
       border-radius: 2px 0px 0px 2px;;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -227,7 +227,7 @@ mwl-calendar {
     .data-cal-events-3 {
       height: 20px;
       width: 100%;
-      padding: 1px 4px 0 4px;
+      padding: 0 4px 0 4px;
       border-radius: 2px 0px 0px 2px;;
       background: rgba(255, 154, 61, 0.15);
       white-space: nowrap;
@@ -238,14 +238,23 @@ mwl-calendar {
       margin-top: 4px;
       &.expired {
         color: #9BACBB;
+        a {
+          color: #9BACBB;
+        }
         border-left: 2px rgba(255, 154, 61, 0.15) solid;
       }
       &.normal {
         color: #2F3E4B;
+        a {
+          color: #2F3E4B;
+        }
         border-left: 2px #FFAE63 solid;
       }
       &:hover {
         color: #fff;
+        a {
+          color: #fff;
+        }
         background: #FFAE63;
       }
       .icon {

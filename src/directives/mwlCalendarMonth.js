@@ -43,7 +43,6 @@ angular
           let cellHeight = 102;
           day.events.forEach((event, $index) => {
             cellHeight -= event.calendarFlag == 3 ? 48 : 20 - 4;
-            console.log(cellHeight);
             if (cellHeight > 0) {
               if (undefined == event.show) {
                 event.show = true;
@@ -55,7 +54,6 @@ angular
               day.more = true;
             }
           })
-          console.log(day.events);
       })
 
       if (vm.cellAutoOpenDisabled) {
