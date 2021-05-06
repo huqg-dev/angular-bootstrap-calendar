@@ -5,7 +5,8 @@
   <div
     ng-repeat="rowOffset in vm.monthOffsets track by rowOffset"
     ng-mouseenter="rowHovered = true"
-    ng-mouseleave="rowHovered = false">
+    ng-mouseleave="rowHovered = false"
+    style="position: relative;">
     <div class="cal-row-fluid cal-before-eventlist">
       <div
         ng-repeat="day in vm.view | calendarLimitTo:vm.weekDays.length:rowOffset track by $index"
@@ -28,7 +29,7 @@
       row-index="vm.openRowIndex"
       col-index="vm.openDayIndex"
       label="vm.view[vm.openDayIndex].label"
-      style="width: 12%;">
+      style="width: 16%;">
     </mwl-calendar-slide-box>
 
   </div>
