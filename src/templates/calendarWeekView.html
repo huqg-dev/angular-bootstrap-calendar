@@ -1,4 +1,5 @@
-<div class="cal-week-box" ng-class="[{'cal-day-box': vm.showTimes}, 'cal-grid-' + vm.view.days.length]" style="min-height:720px;">
+<div class="cal-week-box" ng-class="[{'cal-day-box': vm.showTimes}, 'cal-grid-' + vm.view.days.length]" 
+  style="overflow-y: auto;overflow-x: hidden;min-height:690px;max-height:690px;">
   <div class="cal-row-fluid cal-row-head"
        mwl-element-dimensions="vm.dayColumnDimensions">
     <div
@@ -27,8 +28,7 @@
     </div>
 
   </div>
-
-  <div class="cal-day-panel " ng-style="{height: vm.showTimes ? (vm.dayViewHeight + 'px') : 'auto'}" style="width:100%;">
+  <div class="cal-day-panel " ng-style="{height: vm.showTimes ? (vm.dayViewHeight + 'px') : 'auto'}" style="width:100%;min-height:650px;max-height:650px;">
 
     <mwl-calendar-hour-list
       day-view-start="vm.dayViewStart"
@@ -63,6 +63,7 @@
              -->
             <div
               class="day-highlight calendarFlagBg3"
+              ng-click="vm.onEventClick({calendarEvent: eventRow.event, eventEl : $event})"
               ng-if="eventRow.event.calendarFlag == 3 && eventRow.event.calendarStatus == 1"
               ng-class="[eventRow.event.cssClass, !vm.showTimes && eventRow.startsBeforeWeek ? '' : 'border-left-rounded', !vm.showTimes && eventRow.endsAfterWeek ? '' : 'border-right-rounded']"
               data-event-class
@@ -76,7 +77,8 @@
               mwl-resizable="eventRow.event.resizable === true && eventRow.event.endsAt && !vm.showTimes"
               title="{{eventRow.event.title}}">
               <div class="icon green-low"></div>
-              <div class="cal-year-qz-word qz-word-color1 cal-year-content-width" style="margin-top:4px;" ng-bind-html="eventRow.event.calendarTitle | calendarTrustAsHtml">
+              <div class="cal-year-qz-word qz-word-color1 cal-year-content-width" 
+                style="margin-top:4px;cursor:pointer;" ng-bind-html="eventRow.event.calendarTitle | calendarTrustAsHtml">
               </div>
               <div class="cal-year-qz-word qz-word-color1 cal-year-content-width">
                 <span style="width:80%;" ng-bind-html="eventRow.event.calendarPubSub | calendarTrustAsHtml"></span>
@@ -96,6 +98,7 @@
              -->
             <div
               class="day-highlight"
+              ng-click="vm.onEventClick({calendarEvent: eventRow.event, eventEl : $event})"
               ng-if="eventRow.event.calendarFlag == 3 && eventRow.event.calendarStatus == 4"
               ng-class="[eventRow.event.cssClass, !vm.showTimes && eventRow.startsBeforeWeek ? '' : 'border-left-rounded', !vm.showTimes && eventRow.endsAfterWeek ? '' : 'border-right-rounded']"
               style="border-radius: 2px;height: 49px;margin-top:4px;background: rgba(36, 161, 72, 0.15);border-left: 2px solid #4FB36C;"
@@ -109,7 +112,7 @@
               mwl-resizable="eventRow.event.resizable === true && eventRow.event.endsAt && !vm.showTimes"
               title="{{eventRow.event.title}}">
               <div class="icon green-low"></div>
-              <div class="calendarFlagBg_title" style="margin-top:4px;" ng-bind-html="eventRow.event.calendarTitle | calendarTrustAsHtml">
+              <div class="calendarFlagBg_title" style="margin-top:4px;cursor:pointer;" ng-bind-html="eventRow.event.calendarTitle | calendarTrustAsHtml">
               </div>
               <div class="calendarFlagBg3_content">
                 <span style="width:80%;" ng-bind-html="eventRow.event.calendarPubSub | calendarTrustAsHtml"></span>
@@ -131,6 +134,7 @@
              -->
             <div
               class="day-highlight"
+              ng-click="vm.onEventClick({calendarEvent: eventRow.event})"
               ng-if="eventRow.event.calendarFlag == 2 && eventRow.event.calendarStatus == 1"
               ng-class="[eventRow.event.cssClass, !vm.showTimes && eventRow.startsBeforeWeek ? '' : 'border-left-rounded', !vm.showTimes && eventRow.endsAfterWeek ? '' : 'border-right-rounded']"
               style="border-radius: 2px;height: 20px;margin-top:4px;background: rgba(54, 168, 199, 0.15); border-left: 2px solid #5EB9D2;"
@@ -163,6 +167,7 @@
              -->
             <div
               class="day-highlight"
+              ng-click="vm.onEventClick({calendarEvent: eventRow.event})"
               ng-if="eventRow.event.calendarFlag == 2 && eventRow.event.calendarStatus == 2"
               ng-class="[eventRow.event.cssClass, !vm.showTimes && eventRow.startsBeforeWeek ? '' : 'border-left-rounded', !vm.showTimes && eventRow.endsAfterWeek ? '' : 'border-right-rounded']"
               style="border-radius: 2px;height: 20px;margin-top:4px;background: rgba(251, 105, 99, 0.15); border-left: 2px solid #FB6963;"
@@ -195,6 +200,7 @@
              -->
             <div
               class="day-highlight"
+              ng-click="vm.onEventClick({calendarEvent: eventRow.event})"
               ng-if="eventRow.event.calendarFlag == 2 && eventRow.event.calendarStatus == 4"
               ng-class="[eventRow.event.cssClass, !vm.showTimes && eventRow.startsBeforeWeek ? '' : 'border-left-rounded', !vm.showTimes && eventRow.endsAfterWeek ? '' : 'border-right-rounded']"
               style="border-radius: 2px;height: 20px;margin-top:4px;background: rgba(54, 168, 199, 0.15); border-left: 2px solid rgba(54, 168, 199, 0.15);"
@@ -226,6 +232,7 @@
             <!-- 日程 -->
             <div
               class="day-highlight"
+              ng-click="vm.onEventClick({calendarEvent: eventRow.event})"
               ng-if="eventRow.event.calendarFlag == 1 && eventRow.event.calendarStatus == 1"
               ng-class="[eventRow.event.cssClass, !vm.showTimes && eventRow.startsBeforeWeek ? '' : 'border-left-rounded', !vm.showTimes && eventRow.endsAfterWeek ? '' : 'border-right-rounded']"
               style="border-radius: 2px;height: 20px;margin-top:4px;background: rgba(255, 154, 61, 0.15);border-left: 2px solid #FFAE63;"
@@ -259,6 +266,7 @@
              -->
             <div
               class="day-highlight"
+              ng-click="vm.onEventClick({calendarEvent: eventRow.event})"
               ng-if="eventRow.event.calendarFlag == 1 && eventRow.event.calendarStatus == 2"
               ng-class="[eventRow.event.cssClass, !vm.showTimes && eventRow.startsBeforeWeek ? '' : 'border-left-rounded', !vm.showTimes && eventRow.endsAfterWeek ? '' : 'border-right-rounded']"
               style="border-radius: 2px;height: 20px;margin-top:4px;background: rgba(255, 154, 61, 0.15);border-left: 2px solid #FFAE63;"
@@ -292,6 +300,7 @@
              -->
             <div
               class="day-highlight"
+              ng-click="vm.onEventClick({calendarEvent: eventRow.event})"
               ng-if="eventRow.event.calendarFlag == 1 && eventRow.event.calendarStatus == 4"
               ng-class="[eventRow.event.cssClass, !vm.showTimes && eventRow.startsBeforeWeek ? '' : 'border-left-rounded', !vm.showTimes && eventRow.endsAfterWeek ? '' : 'border-right-rounded']"
               style="border-radius: 2px;height: 20px;margin-top:4px;background: rgba(255, 154, 61, 0.15);border-left: 2px solid rgba(255, 154, 61, 0.15);"

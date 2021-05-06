@@ -1,8 +1,8 @@
 
 <div class="cal-year-box">
-  <div style="overflow-x: auto;">
+  <div style="overflow: auto;">
     <div class="row cal-before-eventlist" style="display:flex;">
-      <div style="min-height:720px;"
+      <div style="max-height:690px;min-height:690px;"
         class="span3 cal-year-div-qz cal-cell {{ day.cssClass }}"
         ng-repeat="month in vm.view"
         ng-init="monthIndex = vm.view.indexOf(month)"
