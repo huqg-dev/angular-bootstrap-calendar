@@ -33,6 +33,29 @@ angular
       vm.view = monthView.days;
       vm.monthOffsets = monthView.rowOffsets;
 
+      function comparator(o1, o2) {
+        return new Date(o1.startsAt).getTime() - new Date(o2.startsAt).getTime();
+      }
+      vm.view.forEach(day => {
+          day.more = false;
+          day.events.sort(comparator);
+          //cell height except day label & triangle down
+          let cellHeight = 102;
+          day.events.forEach((event, $index) => {
+            cellHeight -= event.calendarFlag == 3 ? 48 : 20 - 4;
+            if (cellHeight > 0) {
+              if (undefined == event.show) {
+                event.show = true;
+              }
+            } else {
+              if (undefined == event.show) {
+                event.show = false;
+              }
+              day.more = true;
+            }
+          })
+      })
+
       if (vm.cellAutoOpenDisabled) {
         toggleCell();
       } else if (!vm.cellAutoOpenDisabled && vm.cellIsOpen && vm.openRowIndex === null) {
