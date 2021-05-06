@@ -32,26 +32,26 @@ angular
     });
 
     vm.weekDragged = function(event, daysDiff, minuteChunksMoved) {
-      // debugger
       var newStart = moment(event.startsAt);
       var newEnd = moment(event.endsAt);
-      if (newEnd.toDate().getTime() > moment().endOf('week').toDate().getTime()) {
+      console.log(vm.view.days[vm.view.days.length - 1].date)
+      const weekEnd = moment(moment(vm.view.days[vm.view.days.length - 1].date.format('YYYY-MM-DD') + " " + "23:59:59", "YYYY-MM-DD HH:mm:ss").toDate());
+      if (newEnd.toDate().getTime() > weekEnd.toDate().getTime()) {
         let endStrTime = moment(newEnd).format('HH:mm:ss');
-        let endStrYear = moment().endOf('week').format('YYYY-MM-DD');
+        let endStrYear = weekEnd.format('YYYY-MM-DD');
         newEnd = moment(moment(endStrYear + " " + endStrTime, "YYYY-MM-DD HH:mm:ss").toDate());
       }
-      if (newStart.toDate().getTime() < moment().startOf('week').toDate().getTime()) {
+      if (newStart.toDate().getTime() < vm.view.days[0].date._d.getTime()) {
         let startStrTime = moment(newStart).format('HH:mm:ss');
-        let startStrYear = moment().startOf('week').format('YYYY-MM-DD');
+        let startStrYear = vm.view.days[0].date.format('YYYY-MM-DD');
         newStart = moment(moment(startStrYear + " " + startStrTime, "YYYY-MM-DD HH:mm:ss").toDate());
       }
       newStart = moment(newStart.add(daysDiff, 'days')._d);
-      if (newStart._d.getTime() < moment().startOf('week').toDate().getTime()) {
+      if (newStart._d.getTime() < vm.view.days[0].date._d.getTime()) {
         return;
       }
       newEnd = moment(moment(newEnd._i).add(daysDiff, 'days')._d);
-      // debugger
-      if (newEnd._d.getTime() > moment().endOf('week').toDate().getTime()) {
+      if (newEnd._d.getTime() > weekEnd.toDate().getTime()) {
         return;
       }
 
