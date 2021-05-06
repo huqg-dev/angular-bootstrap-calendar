@@ -3,7 +3,7 @@
     <ul class="unstyled list-unstyled">
       <div class="month-label" ng-bind="vm.label"></div>
       <li
-        ng-repeat="event in vm.events | orderBy:'startsAt' track by event.calendarEventId"
+        ng-repeat="event in vm.events | orderBy:'startsAt'"
         ng-class="event.cssClass"
         ng-mousedown="$event.stopPropagation()"
         mwl-draggable="event.draggable === true"

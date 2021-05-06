@@ -31,7 +31,7 @@
         drop-data="{event: calEvent, draggedFromDate: day.date.toDate()}"
         auto-scroll="vm.draggableAutoScroll"
         ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
-        ng-if="calEvent.calendarFlag == 3 && calEvent.calendarStatus == 1"> 
+        ng-if="calEvent.calendarFlag == 3 && calEvent.calendarStatus == 1 && calEvent.show"> 
         <div class="cal-events-title">
           <span class="icon"></span>
           <div class="cal-events-title" title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></div>
@@ -47,7 +47,7 @@
         drop-data="{event: calEvent, draggedFromDate: day.date.toDate()}"
         auto-scroll="vm.draggableAutoScroll"
         ng-click="vm.onEventClick({calendarEvent: calEvent, eventEl : $event})"
-        ng-if="calEvent.calendarFlag == 3 && calEvent.calendarStatus == 4"> 
+        ng-if="calEvent.calendarFlag == 3 && calEvent.calendarStatus == 4 && calEvent.show"> 
         <div class="cal-events-title" title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></div>
         <div class="cal-events-content">
           <span title="{{calEvent.calendarPubSub}}" ng-bind="calEvent.calendarPubSub"></span>
@@ -61,7 +61,7 @@
         drop-data="{event: calEvent, draggedFromDate: day.date.toDate()}"
         auto-scroll="vm.draggableAutoScroll"
         ng-click="vm.onEventClick({calendarEvent: calEvent})"
-        ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 1"> 
+        ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 1 && calEvent.show"> 
         <span class="icon"></span>
         <div class="cal-events-title">
           <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
@@ -73,7 +73,7 @@
         drop-data="{event: calEvent, draggedFromDate: day.date.toDate()}"
         auto-scroll="vm.draggableAutoScroll"
         ng-click="vm.onEventClick({calendarEvent: calEvent})"
-        ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 2"> 
+        ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 2 && calEvent.show"> 
         <span class="icon"></span>
         <div class="cal-events-title">
           <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
@@ -85,7 +85,7 @@
         drop-data="{event: calEvent, draggedFromDate: day.date.toDate()}"
         auto-scroll="vm.draggableAutoScroll"
         ng-click="vm.onEventClick({calendarEvent: calEvent})"
-        ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 4"> 
+        ng-if="calEvent.calendarFlag == 2 && calEvent.calendarStatus == 4 && calEvent.show"> 
         <span class="icon"></span>
         <div class="cal-events-title">
           <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
@@ -98,7 +98,7 @@
         drop-data="{event: calEvent, draggedFromDate: day.date.toDate()}"
         auto-scroll="vm.draggableAutoScroll"
         ng-click="vm.onEventClick({calendarEvent: calEvent})"
-        ng-if="calEvent.calendarFlag == 1 && calEvent.calendarStatus == 2"> 
+        ng-if="calEvent.calendarFlag == 1 && calEvent.calendarStatus == 2 && calEvent.show"> 
         <span class="icon"></span>
         <div class="cal-events-title">
           <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
@@ -110,7 +110,7 @@
         drop-data="{event: calEvent, draggedFromDate: day.date.toDate()}"
         auto-scroll="vm.draggableAutoScroll"
         ng-click="vm.onEventClick({calendarEvent: calEvent})"
-        ng-if="calEvent.calendarFlag == 1 && calEvent.calendarStatus == 4"> 
+        ng-if="calEvent.calendarFlag == 1 && calEvent.calendarStatus == 4 && calEvent.show"> 
         <span class="icon"></span>
         <div class="cal-events-title">
           <span title="{{calEvent.title}}" ng-bind-html="calEvent.calendarTitle | calendarTrustAsHtml"></span>
@@ -119,6 +119,6 @@
     </div>
   </div>
 
-  <div class="triangle-down" ng-if="day.events && day.events.length > 0" ng-click="$event.stopPropagation();vm.dayClicked(day, false, $event)"></div>
+  <div class="triangle-down" ng-if="day.more" ng-click="$event.stopPropagation();vm.dayClicked(day, false, $event)"></div>
 
 </div>
